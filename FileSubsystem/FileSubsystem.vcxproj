@@ -18,6 +18,34 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Auth\Admin.cpp" />
+    <ClCompile Include="Auth\Editor.cpp" />
+    <ClCompile Include="Auth\User.cpp" />
+    <ClCompile Include="Auth\Viewer.cpp" />
+    <ClCompile Include="FileTypes\BaseFile.cpp" />
+    <ClCompile Include="FileTypes\Directory.cpp" />
+    <ClCompile Include="FileTypes\Directory.h" />
+    <ClCompile Include="FileTypes\ExecutableFiles\ExecutableFile.cpp" />
+    <ClCompile Include="FileTypes\ExecutableFiles\TxtFile.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Utility\PolymorphicContainer.hpp" />
+    <ClCompile Include="Utility\Vector.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Auth\Admin.h" />
+    <ClInclude Include="Auth\Editor.h" />
+    <ClInclude Include="Auth\Role.h" />
+    <ClInclude Include="Auth\User.h" />
+    <ClInclude Include="Auth\Viewer.h" />
+    <ClInclude Include="Command\BaseCommand.h" />
+    <ClInclude Include="Command\EditCommand.h" />
+    <ClInclude Include="Command\ViewCommand.h" />
+    <ClInclude Include="FileTypes\BaseFile.h" />
+    <ClInclude Include="FileTypes\ExecutableFiles\ExecutableFile.h" />
+    <ClInclude Include="FileTypes\ExecutableFiles\TxtFile.h" />
+    <ClInclude Include="Utility\PolymorphicPtr.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,9 +154,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="FileSubsystem.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
