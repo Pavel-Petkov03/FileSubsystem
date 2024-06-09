@@ -1,5 +1,5 @@
 #pragma once
-#include "../BaseFile.h"
+#include "../BaseFile.hpp"
 
 class ExecutableFile : public BaseFile {
 public:

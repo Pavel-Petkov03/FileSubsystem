@@ -18,75 +18,48 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileTypes\BaseFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileTypes\Directory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Auth\User.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileTypes\Directory.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\PolymorphicContainer.hpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\Vector.hpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Auth\Admin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Auth\Viewer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Auth\Editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileTypes\ExecutableFiles\ExecutableFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileTypes\ExecutableFiles\TxtFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FileTypes\BaseFile.h">
+    <ClInclude Include="FileTypes\BaseFile.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auth\User.h">
+    <ClInclude Include="Auth\User.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auth\Role.h">
+    <ClInclude Include="Auth\Role.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileTypes\ExecutableFiles\ExecutableFile.h">
+    <ClInclude Include="FileTypes\ExecutableFiles\ExecutableFile.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileTypes\ExecutableFiles\TxtFile.h">
+    <ClInclude Include="FileTypes\ExecutableFiles\TxtFile.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\PolymorphicPtr.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auth\Admin.h">
+    <ClInclude Include="Auth\Admin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\BaseCommand.h">
+    <ClInclude Include="Auth\Viewer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auth\Viewer.h">
+    <ClInclude Include="Command\ViewCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\ViewCommand.h">
+    <ClInclude Include="Auth\Editor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auth\Editor.h">
+    <ClInclude Include="Command\EditCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\EditCommand.h">
+    <ClInclude Include="FileTypes\Directory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\BaseCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

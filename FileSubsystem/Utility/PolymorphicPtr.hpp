@@ -1,7 +1,6 @@
 #pragma once
-#pragma once 
-#include <utility>
-#include <stdexcept>
+#include <iostream>
+#include "../Auth/Role.hpp"
 
 template <class T>
 class Polymorphic_Ptr {
@@ -28,11 +27,13 @@ public:
 	T& operator*();
 	const T& operator*() const;
 
-	operator bool() const;
 	void reset(T* data);
 
 	T* get();
 	const T* get() const;
+
+	friend std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<T>& ptr);
+
 };
 
 
@@ -128,11 +129,6 @@ const T& Polymorphic_Ptr<T>::operator*() const
 	return *data;
 }
 
-template<class T>
-Polymorphic_Ptr<T>::operator bool() const
-{
-	return data != nullptr;
-}
 
 template<class T>
 void Polymorphic_Ptr<T>::reset(T* data)
@@ -154,3 +150,12 @@ const T* Polymorphic_Ptr<T>::get() const
 {
 	return data;
 }
+
+
+template<class T>
+std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<T>& ptr)
+{
+	return ofs;
+}
+
+

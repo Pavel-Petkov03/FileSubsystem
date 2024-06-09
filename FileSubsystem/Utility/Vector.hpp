@@ -1,72 +1,70 @@
 #pragma once
 #include <iostream>
-#include <exception>
-#include <stdexcept>
-#include <utility>
+#include <ostream>
 
-
-template <typename T>
+template <typename F>
 class Vector
 {
-    T* data;
+    F* data;
     size_t size;
     size_t capacity;
 
     void free();
-    void copyFrom(const Vector<T>& other);
-    void moveFrom(Vector<T>&& other);
+    void copyFrom(const Vector<F>& other);
+    void moveFrom(Vector<F>&& other);
     void resize(size_t newCapacity);
 
 public:
     Vector();
-    Vector(const Vector<T>& other);
-    Vector(Vector<T>&& other);
+    Vector(const Vector<F>& other);
+    Vector(Vector<F>&& other);
 
-    Vector<T>& operator=(const Vector<T>& other);
-    Vector<T>& operator=(Vector<T>&& other);
+    Vector<F>& operator=(const Vector<F>& other);
+    Vector<F>& operator=(Vector<F>&& other);
 
-    void pushBack(const T& element);
-    void pushBack(T&& element);
+    void pushBack(const F& element);
+    void pushBack(F&& element);
 
     void popBack();
 
-    void insert(const T& element, size_t index);
-    void insert(T&& element, size_t index);
+    void insert(const F& element, size_t index);
+    void insert(F&& element, size_t index);
 
     void erase(size_t index);
 
     void clear();
 
-    const T& operator[](size_t index) const;
-    T& operator[](size_t index);
+    const F operator[](size_t index) const;
+    F& operator[](size_t index);
 
     bool isEmpty() const;
     size_t getSize() const;
 
     ~Vector();
+    friend std::ostream& operator<<(std::ostream&, const Vector<F>& vector);
 };
 
-template <typename T>
-void Vector<T>::free()
+template <typename F>
+void Vector<F>::free()
 {
     delete[] data;
     data = nullptr;
 }
 
-template <typename T>
-void Vector<T>::copyFrom(const Vector<T>& other)
+template <typename F>
+void Vector<F>::copyFrom(const Vector<F>& other)
 {
     size = other.size;
     capacity = other.capacity;
-    data = new T[capacity];
+    data = new F[capacity];
     for (size_t i = 0; i < size; i++)
     {
         data[i] = other.data[i];
     }
 }
 
-template <typename T>
-void Vector<T>::moveFrom(Vector<T>&& other)
+template <typename F>
+void Vector<F>::moveFrom(Vector<F>&& other)
 {
     size = other.size;
     capacity = other.capacity;
@@ -75,10 +73,10 @@ void Vector<T>::moveFrom(Vector<T>&& other)
     other.data = nullptr;
 }
 
-template <typename T>
-void Vector<T>::resize(size_t newCapacity)
+template <typename F>
+void Vector<F>::resize(size_t newCapacity)
 {
-    T* newData = new T[newCapacity];
+    F* newData = new F[newCapacity];
 
     for (size_t i = 0; i < size; i++)
     {
@@ -90,29 +88,29 @@ void Vector<T>::resize(size_t newCapacity)
     capacity = newCapacity;
 }
 
-template <typename T>
-Vector<T>::Vector()
+template <typename F>
+Vector<F>::Vector()
 {
     capacity = 8;
     size = 0;
 
-    data = new T[capacity];
+    data = new F[capacity];
 }
 
-template <typename T>
-Vector<T>::Vector(const Vector<T>& other)
+template <typename F>
+Vector<F>::Vector(const Vector<F>& other)
 {
     copyFrom(other);
 }
 
-template <typename T>
-Vector<T>::Vector(Vector<T>&& other)
+template <typename F>
+Vector<F>::Vector(Vector<F>&& other)
 {
     moveFrom(std::move(other));
 }
 
-template <typename T>
-Vector<T>& Vector<T>::operator=(const Vector<T>& other)
+template <typename F>
+Vector<F>& Vector<F>::operator=(const Vector<F>& other)
 {
     if (this != &other)
     {
@@ -123,8 +121,8 @@ Vector<T>& Vector<T>::operator=(const Vector<T>& other)
     return *this;
 }
 
-template <typename T>
-Vector<T>& Vector<T>::operator=(Vector<T>&& other)
+template <typename F>
+Vector<F>& Vector<F>::operator=(Vector<F>&& other)
 {
     if (this != &other)
     {
@@ -135,8 +133,8 @@ Vector<T>& Vector<T>::operator=(Vector<T>&& other)
     return *this;
 }
 
-template <typename T>
-void Vector<T>::pushBack(const T& element)
+template <typename F>
+void Vector<F>::pushBack(const F& element)
 {
     if (size == capacity)
     {
@@ -146,8 +144,8 @@ void Vector<T>::pushBack(const T& element)
     data[size++] = element;
 }
 
-template <typename T>
-void Vector<T>::pushBack(T&& element)
+template <typename F>
+void Vector<F>::pushBack(F&& element)
 {
     if (size == capacity)
     {
@@ -157,8 +155,8 @@ void Vector<T>::pushBack(T&& element)
     data[size++] = std::move(element);
 }
 
-template <typename T>
-void Vector<T>::popBack()
+template <typename F>
+void Vector<F>::popBack()
 {
     if (isEmpty())
     {
@@ -173,8 +171,8 @@ void Vector<T>::popBack()
     size--;
 }
 
-template <typename T>
-void Vector<T>::insert(const T& element, size_t index)
+template <typename F>
+void Vector<F>::insert(const F& element, size_t index)
 {
     if (index >= size)
     {
@@ -195,8 +193,8 @@ void Vector<T>::insert(const T& element, size_t index)
     size++;
 }
 
-template <typename T>
-void Vector<T>::insert(T&& element, size_t index)
+template <typename F>
+void Vector<F>::insert(F&& element, size_t index)
 {
     if (index >= size)
     {
@@ -218,8 +216,8 @@ void Vector<T>::insert(T&& element, size_t index)
 }
 
 
-template <typename T>
-void Vector<T>::erase(size_t index)
+template <typename F>
+void Vector<F>::erase(size_t index)
 {
     if (index >= size)
     {
@@ -239,41 +237,48 @@ void Vector<T>::erase(size_t index)
     }
 }
 
-template <typename T>
-void Vector<T>::clear()
+template <typename F>
+void Vector<F>::clear()
 {
     free();
     size = 0;
     capacity = 8;
-    data = new T[capacity];
+    data = new F[capacity];
 }
 
-template <typename T>
-const T& Vector<T>::operator[](size_t index) const
+
+template<typename F>
+const F Vector<F>::operator[](size_t index) const
 {
     return data[index];
 }
 
-template <typename T>
-T& Vector<T>::operator[](size_t index)
+template <typename F>
+F& Vector<F>::operator[](size_t index)
 {
     return data[index];
 }
 
-template <typename T>
-Vector<T>::~Vector()
+template <typename F>
+Vector<F>::~Vector()
 {
     free();
 }
 
-template <typename T>
-bool Vector<T>::isEmpty() const
+template <typename F>
+bool Vector<F>::isEmpty() const
 {
     return size == 0;
 }
 
-template <typename T>
-size_t Vector<T>::getSize() const
+template <typename F>
+size_t Vector<F>::getSize() const
 {
     return size;
+}
+
+template <typename F>
+std::ostream& operator<<(std::ostream& ofs, const Vector<F>& vector) {
+    ofs << vector.getSize() << std::endl;
+    return ofs;
 }

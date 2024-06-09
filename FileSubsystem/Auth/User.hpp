@@ -1,7 +1,20 @@
-#include "User.h"
-#include "Admin.h"
-#include "Viewer.h"
-#include "Editor.h"
+#pragma once
+#include "../Utility/PolymorphicPtr.hpp"
+#include "Role.hpp"
+#include "../Utility/Vector.hpp"
+#include "Viewer.hpp"
+#include "Editor.hpp"
+class User {
+private:
+	Polymorphic_Ptr<BaseRole> role;
+	Vector<std::string> groupsIn;
+public: 
+	bool hasRole(const BaseRole* role) const;
+	bool isInGroup(std::string& groupName) const;
+	bool isAdmin() const;
+};
+
+
 bool User::hasRole(const BaseRole* other) const
 {
 	if (dynamic_cast<const Admin*>(role.get()) && dynamic_cast<const Admin*>(other)) {
