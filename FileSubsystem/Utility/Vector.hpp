@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <iostream>
 #include <ostream>
 
@@ -40,8 +41,11 @@ public:
     bool isEmpty() const;
     size_t getSize() const;
 
+    bool hasElement(const F& el);
     ~Vector();
-    friend std::ostream& operator<<(std::ostream&, const Vector<F>& vector);
+
+    template <typename U>
+    friend std::ostream& operator<<(std::ostream&, const Vector<U>& vector);
 };
 
 template <typename F>
@@ -259,6 +263,17 @@ F& Vector<F>::operator[](size_t index)
     return data[index];
 }
 
+template<typename F>
+bool Vector<F>::hasElement(const F& el)
+{
+    for (int i = 0; i < size; i++) {
+        if (el == data[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 template <typename F>
 Vector<F>::~Vector()
 {
@@ -277,8 +292,11 @@ size_t Vector<F>::getSize() const
     return size;
 }
 
-template <typename F>
-std::ostream& operator<<(std::ostream& ofs, const Vector<F>& vector) {
+template <typename U>
+std::ostream& operator<<(std::ostream& ofs, const Vector<U>& vector) {
     ofs << vector.getSize() << std::endl;
+    for (int i = 0; i < vector.getSize(); i++) {
+        ofs << vector[i];
+    }
     return ofs;
 }

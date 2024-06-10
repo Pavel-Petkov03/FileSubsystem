@@ -5,15 +5,13 @@
 #include "../Auth/Editor.hpp"
 class EditCommand : public BaseCommand {
 public:
-	EditCommand();
-	void execute() override;
+	virtual bool isUserAuthenticated(const User& user);
 };
-EditCommand::EditCommand()
+
+bool EditCommand::isUserAuthenticated(const User& user)
 {
-
-}
-
-void EditCommand::execute()
-{
-
+	if (BaseCommand::isUserAuthenticated(user)) {
+		return true;
+	}
+	return user.hasRole(RoleTypes::Editor);
 }

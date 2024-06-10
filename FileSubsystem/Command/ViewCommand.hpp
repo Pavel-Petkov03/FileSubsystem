@@ -2,16 +2,9 @@
 #include "BaseCommand.hpp"
 class ViewCommand : public BaseCommand {
 public:
-	ViewCommand();
-	void execute() override;
+	bool isUserAuthenticated(const User& user) override;
 };
 
-ViewCommand::ViewCommand()
-{
-
-}
-
-void ViewCommand::execute()
-{
-
+bool ViewCommand::isUserAuthenticated(const User& user) {
+	return true;
 }

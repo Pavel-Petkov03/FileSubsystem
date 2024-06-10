@@ -1,12 +1,8 @@
 #include <iostream>
 #include <chrono>
-#include "Utility/PolymorphicPtr.hpp"
-#include "Auth/User.hpp"
+#include "FileTypes/Directory.hpp"
 int main(){
-	User user;
-	std::string name("adsa");
-
-	BaseRole* c = new Admin();
-	Polymorphic_Ptr<BaseRole> q(c);
-	std::cout << q;
+	const User user;
+	std::string name("root");
+	std::cout << dir;
 }

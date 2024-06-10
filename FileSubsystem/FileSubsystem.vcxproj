@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Utility\Vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth\Admin.hpp" />
@@ -31,10 +30,12 @@
     <ClInclude Include="Command\EditCommand.hpp" />
     <ClInclude Include="Command\BaseCommand.hpp" />
     <ClInclude Include="Command\ViewCommand.hpp" />
+    <ClInclude Include="Errors\Auth\CommandAuthorisationError.hpp" />
     <ClInclude Include="FileTypes\BaseFile.hpp" />
     <ClInclude Include="FileTypes\Directory.hpp" />
     <ClInclude Include="FileTypes\ExecutableFiles\ExecutableFile.hpp" />
     <ClInclude Include="FileTypes\ExecutableFiles\TxtFile.hpp" />
+    <ClInclude Include="Utility\Vector.hpp" />
     <ClInclude Include="Utility\PolymorphicPtr.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

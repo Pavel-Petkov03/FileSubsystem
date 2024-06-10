@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include "../Auth/Role.hpp"
 
 template <class T>
 class Polymorphic_Ptr {
@@ -32,7 +31,8 @@ public:
 	T* get();
 	const T* get() const;
 
-	friend std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<T>& ptr);
+	template <class U>
+	friend std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<U>& ptr);
 
 };
 
@@ -152,10 +152,14 @@ const T* Polymorphic_Ptr<T>::get() const
 }
 
 
-template<class T>
-std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<T>& ptr)
+template<class U>
+std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<U>& ptr)
 {
+	if (ptr.get()) {
+		ofs << *ptr;
+	}
 	return ofs;
 }
+
 
 

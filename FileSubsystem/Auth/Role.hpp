@@ -1,5 +1,5 @@
 #pragma once
-class BaseCommand;
+#include <ostream>
 
 enum class RoleTypes {
 	Admin,
@@ -10,7 +10,6 @@ enum class RoleTypes {
 
 class BaseRole {
 public:
-	virtual bool authorisedCommand(const BaseCommand* command) const = 0;
 	virtual BaseRole* clone() const = 0;
 	virtual ~BaseRole() = default;
 	virtual RoleTypes getType() const = 0;
@@ -20,6 +19,6 @@ public:
 
 std::ostream& operator<<(std::ostream& ofs, const BaseRole& role)
 {
-	ofs << "Base";
+	ofs << (int)role.getType() << std::endl;
 	return ofs;
 }
