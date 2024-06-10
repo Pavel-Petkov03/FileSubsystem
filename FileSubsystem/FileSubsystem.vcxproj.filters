@@ -65,5 +65,14 @@
     <ClInclude Include="Errors\Auth\CommandAuthorisationError.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CommandPanel\BasePanel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandPanel\AdminPanel\AdminPanel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Errors\Panel\InvalidCommandInAdmin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
