@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../BasePanel.hpp"
 #include "../../Errors/Panel/InvalidCommandInAdmin.hpp"
+#include <sstream>
 class AdminPanel : public BasePanel {
 public:
 	void printPrompth() const override;
@@ -45,5 +46,31 @@ void AdminPanel::runCommand(const std::string& command, bool running) const
 		running = false;
 		return;
 	}
-	// switch case for factory
+	if (command == "--options") {
+		printPrompth();
+	}
+	std::stringstream ss(command);
+	std::string cmd;
+	ss >> cmd;
+	if (cmd == "change_user_role") {
+
+	}
+	else if (cmd == "delete_user") {
+
+	}
+	else if (cmd == "add_user_to_group") {
+
+	}
+	else if (cmd == "remove_user_from_group") {
+
+	}
+	else if (cmd == "add_group_to_folder") {
+
+	}
+	else if (cmd == "remove_group_from_folder") {
+
+	}
+	else {
+		throw InvalidCommandInAdmin("Invalid Admin command");
+	}
 }
