@@ -15,11 +15,13 @@ private:
 	BaseFile* parent;
 	const User* creator;
 	std::string getCurrentDateTime() const;
+	std::string getPathRecurse(const BaseFile* current) const;
 public:
 	virtual ~BaseFile() = default;
 	virtual BaseFile* clone() const = 0;
 	BaseFile(std::string name, const User& creator, BaseFile* parent);
 	friend std::ostream& operator<<(std::ostream& ofs, const BaseFile&);
+	std::string getPath() const;
 };
 
 
@@ -33,6 +35,14 @@ std::string BaseFile::getCurrentDateTime() const
 	return ss.str();
 }
 
+std::string BaseFile::getPathRecurse(const BaseFile* current) const
+{
+	if (!current->parent) {
+		return std::string("root#");
+	}
+	return getPathRecurse(current->parent) + current->name + "/";
+}
+
 BaseFile::BaseFile(std::string name, const User& creator, BaseFile* parent)
 {
 	this->creator = &creator;
@@ -40,6 +50,11 @@ BaseFile::BaseFile(std::string name, const User& creator, BaseFile* parent)
 	this->modificationDate = getCurrentDateTime();
 	this->name = name;
 	this->parent = parent;
+}
+
+std::string BaseFile::getPath() const
+{
+	return getPathRecurse(this);
 }
 
 std::ostream& operator<<(std::ostream& ofs, const BaseFile& file)

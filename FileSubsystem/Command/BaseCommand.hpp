@@ -23,3 +23,4 @@ void BaseCommand::execute(const BaseFile* file, const User& user)
 	}
 	runTask(file, user);
 }
+ 
