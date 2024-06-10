@@ -38,9 +38,9 @@ std::string BaseFile::getCurrentDateTime() const
 std::string BaseFile::getPathRecurse(const BaseFile* current) const
 {
 	if (!current->parent) {
-		return std::string("root#");
+		return std::string("root");
 	}
-	return getPathRecurse(current->parent) + current->name + "/";
+	return getPathRecurse(current->parent) + "/" + current->name;
 }
 
 BaseFile::BaseFile(std::string name, const User& creator, BaseFile* parent)
@@ -54,7 +54,7 @@ BaseFile::BaseFile(std::string name, const User& creator, BaseFile* parent)
 
 std::string BaseFile::getPath() const
 {
-	return getPathRecurse(this);
+	return getPathRecurse(this) + "#"; 
 }
 
 std::ostream& operator<<(std::ostream& ofs, const BaseFile& file)

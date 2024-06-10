@@ -6,8 +6,6 @@ enum class RoleTypes {
 	Editor,
 	Viewer,
 };
-
-
 class BaseRole {
 public:
 	virtual BaseRole* clone() const = 0;

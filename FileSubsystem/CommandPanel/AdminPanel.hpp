@@ -1,15 +1,15 @@
 #pragma once
 #include <iostream>
-#include "../BasePanel.hpp"
-#include "../../Errors/Panel/InvalidCommandInAdmin.hpp"
+#include "BasePanel.hpp"
 #include <sstream>
+#include "../../Utility/Vector.hpp"
+#include "../Errors/Panel/InvalidCommandInPanel.hpp"
 class AdminPanel : public BasePanel {
 public:
 	void printPrompth() const override;
-	void run() const override;
-	void runCommand(const std::string& command, bool running) const;
+	void runCommand(const std::string& command) const override;
+	void printHeaderPanelMessage() const override;
 };
-
 
 
 void AdminPanel::printPrompth() const
@@ -25,30 +25,8 @@ void AdminPanel::printPrompth() const
 	std::cout << "   remove_group_from_folder <folderName> <groupName>" << std::endl;
 }
 
-void AdminPanel::run() const  {
-	std::cout << "Welcome to admin panel" << std::endl;
-	bool running = true;
-	std::string command;
-	while (running) {
-		try {
-			runCommand(command, running);
-		}
-		catch (const InvalidCommandInAdmin& error) {
-			std::cout << error.what() << std::endl;
-			std::cout << "Type --options to list all valid commands" << std::endl;
-		}
-	}
-}
-
-void AdminPanel::runCommand(const std::string& command, bool running) const
+void AdminPanel::runCommand(const std::string& command) const
 {
-	if (command == "end") {
-		running = false;
-		return;
-	}
-	if (command == "--options") {
-		printPrompth();
-	}
 	std::stringstream ss(command);
 	std::string cmd;
 	ss >> cmd;
@@ -71,6 +49,11 @@ void AdminPanel::runCommand(const std::string& command, bool running) const
 
 	}
 	else {
-		throw InvalidCommandInAdmin("Invalid Admin command");
+		throw InvalidCommandInPanel("Invalid Admin command");
 	}
+}
+
+void AdminPanel::printHeaderPanelMessage() const
+{
+	std::cout << "Welcome to Admin Panel" << std::endl;
 }

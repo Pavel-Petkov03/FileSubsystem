@@ -27,13 +27,14 @@
     <ClInclude Include="Auth\Role.hpp" />
     <ClInclude Include="Auth\User.hpp" />
     <ClInclude Include="Auth\Viewer.hpp" />
-    <ClInclude Include="CommandPanel\AdminPanel\AdminPanel.hpp" />
+    <ClInclude Include="CommandPanel\AdminPanel.hpp" />
     <ClInclude Include="CommandPanel\BasePanel.hpp" />
+    <ClInclude Include="CommandPanel\RegistrationAndLoginPanel.hpp" />
     <ClInclude Include="Command\EditCommand.hpp" />
     <ClInclude Include="Command\BaseCommand.hpp" />
     <ClInclude Include="Command\ViewCommand.hpp" />
     <ClInclude Include="Errors\Auth\CommandAuthorisationError.hpp" />
-    <ClInclude Include="Errors\Panel\InvalidCommandInAdmin.hpp" />
+    <ClInclude Include="Errors\Panel\InvalidCommandInPanel.hpp" />
     <ClInclude Include="FileTypes\BaseFile.hpp" />
     <ClInclude Include="FileTypes\Directory.hpp" />
     <ClInclude Include="FileTypes\ExecutableFiles\ExecutableFile.hpp" />

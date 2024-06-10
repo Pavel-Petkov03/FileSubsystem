@@ -20,6 +20,7 @@ public:
     Vector(const Vector<F>& other);
     Vector(Vector<F>&& other);
 
+
     Vector<F>& operator=(const Vector<F>& other);
     Vector<F>& operator=(Vector<F>&& other);
 

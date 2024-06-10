@@ -68,10 +68,13 @@
     <ClInclude Include="CommandPanel\BasePanel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CommandPanel\AdminPanel\AdminPanel.hpp">
+    <ClInclude Include="CommandPanel\AdminPanel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Errors\Panel\InvalidCommandInAdmin.hpp">
+    <ClInclude Include="Errors\Panel\InvalidCommandInPanel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandPanel\RegistrationAndLoginPanel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
