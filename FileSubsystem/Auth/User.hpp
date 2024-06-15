@@ -2,6 +2,7 @@
 #include "../Utility/PolymorphicPtr.hpp"
 #include "../Utility/Vector.hpp"
 #include "../Auth/Role.hpp"
+#include "../Auth/Viewer.hpp"
 class User {
 private:
 	Polymorphic_Ptr<BaseRole> role;
@@ -9,6 +10,8 @@ private:
 public: 
 	bool hasRole(const RoleTypes& type) const;
 	bool isInGroup(std::string& groupName) const;
+	void addToGroup(std::string& groupName);
+	User();
 };
 
 
@@ -25,4 +28,14 @@ bool User::isInGroup(std::string& groupName) const
 		}
 	}
 	return false;
+}
+
+void User::addToGroup(std::string& groupName)
+{
+	groupsIn.pushBack(groupName);
+}
+
+User::User()
+{
+	role = new Viewer();
 }

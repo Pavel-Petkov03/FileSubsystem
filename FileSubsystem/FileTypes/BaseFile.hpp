@@ -54,7 +54,7 @@ BaseFile::BaseFile(std::string name, const User& creator, BaseFile* parent)
 
 std::string BaseFile::getPath() const
 {
-	return getPathRecurse(this) + "#"; 
+	return getPathRecurse(this); 
 }
 
 std::ostream& operator<<(std::ostream& ofs, const BaseFile& file)

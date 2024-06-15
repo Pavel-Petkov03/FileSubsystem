@@ -11,7 +11,7 @@ private:
 	bool isInGroup(const User& user);
 public:
 	void addFile(const User& user, BaseFile* file);
-	void addGroup(std::string& groupName);
+	void addGroup(const User& user, std::string& groupName);
 	BaseFile* clone() const override;
 	bool isAuthenticated(const User& user);
 	Directory(const std::string& name, const User& creator, BaseFile* parent);
@@ -53,13 +53,20 @@ Directory::Directory(const std::string& name, const User& creator, BaseFile* par
 
 void Directory::addFile(const User& user, BaseFile* file)
 {
-	children.pushBack(file);
+	if (isAuthenticated(user)) {
+		children.pushBack(file);
+		return;
+	}
+	// todo throw
 }
 
-void Directory::addGroup(std::string& groupName)
+void Directory::addGroup( const User& user, std::string& groupName)
 {
 	if (groups.hasElement(groupName)) {
 		// todo throw error
+	}
+	if (!isAuthenticated(user)) {
+		//todo throw error
 	}
 	groups.pushBack(groupName);
 }

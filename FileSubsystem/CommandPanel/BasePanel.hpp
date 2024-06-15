@@ -1,22 +1,28 @@
 #pragma once
 #include <iostream>
 #include "../Errors/Panel/InvalidCommandInPanel.hpp"
+#include "../Auth/User.hpp"
+#include <string>
 class BasePanel {
+protected:
+	BasePanel* previousPanel;
+	User* user;
 public:
 	virtual void printPrompth() const = 0;
-	void run() const;
+	void run();
 	virtual void printHeaderPanelMessage() const = 0;
+	BasePanel(BasePanel* prev, User* user);
 	virtual ~BasePanel() = default;
-	BasePanel() = default;
-	virtual void runCommand(const std::string& command) const = 0;
+	virtual void runCommand(const std::string& command) = 0;
+	User* getUser() const;
 };
 
 
 
-void BasePanel::run() const {
+void BasePanel::run() {
 	printHeaderPanelMessage();
 	std::string command;
-	std::cin >> command;
+	std::getline(std::cin, command);
 	while (true) {
 		try {
 			if (command == "--options") {
@@ -33,6 +39,16 @@ void BasePanel::run() const {
 			std::cout << error.what() << std::endl;
 			std::cout << "Type --options to list all valid commands" << std::endl;
 		}
-		std::cin >> command;
+		std::getline(std::cin, command);
 	}
 }
+
+BasePanel::BasePanel(BasePanel* prev, User* user) : previousPanel(prev), user(user)
+{
+}
+
+User* BasePanel::getUser() const
+{
+	return user;
+}
+

@@ -1,11 +1,10 @@
 #pragma once
 #include "Role.hpp"
-#include "../Command/ViewCommand.hpp"
 class Viewer : public BaseRole {
 public:
 	BaseRole* clone() const override;
 	RoleTypes getType() const override;
-};
+}; 
 
 BaseRole* Viewer::clone() const
 {

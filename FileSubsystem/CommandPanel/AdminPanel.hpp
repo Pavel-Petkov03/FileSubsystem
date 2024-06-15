@@ -5,12 +5,18 @@
 #include "../../Utility/Vector.hpp"
 #include "../Errors/Panel/InvalidCommandInPanel.hpp"
 class AdminPanel : public BasePanel {
+
 public:
+	AdminPanel(BasePanel* prev, User* user);
 	void printPrompth() const override;
-	void runCommand(const std::string& command) const override;
+	void runCommand(const std::string& command) override;
 	void printHeaderPanelMessage() const override;
 };
 
+
+AdminPanel::AdminPanel(BasePanel* prev, User* user) : BasePanel(prev , user)
+{
+}
 
 void AdminPanel::printPrompth() const
 {
@@ -25,7 +31,7 @@ void AdminPanel::printPrompth() const
 	std::cout << "   remove_group_from_folder <folderName> <groupName>" << std::endl;
 }
 
-void AdminPanel::runCommand(const std::string& command) const
+void AdminPanel::runCommand(const std::string& command)
 {
 	std::stringstream ss(command);
 	std::string cmd;

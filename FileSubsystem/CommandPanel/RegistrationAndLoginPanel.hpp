@@ -2,14 +2,14 @@
 #include "BasePanel.hpp"
 #include "../../Auth/User.hpp"
 #include <sstream>
+#include "../Command/AdminCommands/LoginCommand.hpp"
+#include "../Command/AdminCommands/RegisterCommand.hpp"
 class LoginAndRegistrationPanel : public BasePanel {
-private:
-	User* user;
 public:
-	LoginAndRegistrationPanel() = default;
 	void printHeaderPanelMessage() const override;
-	void runCommand(const std::string& str) const override;
+	void runCommand(const std::string& str) override;
 	void printPrompth() const override;
+	LoginAndRegistrationPanel(BasePanel* prev, User* user);
 };
 
 
@@ -24,24 +24,28 @@ void LoginAndRegistrationPanel::printPrompth() const
 	std::cout << "   login <username> <password>" << std::endl;
 }
 
+LoginAndRegistrationPanel::LoginAndRegistrationPanel(BasePanel* prev, User* user) : BasePanel(prev, user)
+{
+
+}
+
 void LoginAndRegistrationPanel::printHeaderPanelMessage() const
 {
 	std::cout << "Welcome to registration page" << std::endl;
 }
 
-void LoginAndRegistrationPanel::runCommand(const std::string& command) const
+void LoginAndRegistrationPanel::runCommand(const std::string& command)
 {
+
 	std::stringstream ss(command);
 	std::string cmd;
-	std::string username;
-	std::string password;
-	ss >> cmd >> username >> password;
+	ss >> cmd;
 
 	if (cmd == "login") {
-
+		LoginCommand().execute((User*&)user, ss);
 	}
 	else if (cmd == "register") {
-
+		RegisterCommand().execute((User*&)user, ss);
 	}
 	else {
 		throw InvalidCommandInPanel("Invalid command");

@@ -59,10 +59,11 @@ void Polymorphic_Ptr<T>::free()
 template<class T>
 Polymorphic_Ptr<T>::Polymorphic_Ptr(T* data) : data(data)
 {
+
 }
 
 template<class T>
-inline Polymorphic_Ptr<T>::Polymorphic_Ptr(const Polymorphic_Ptr<T>& other)
+ Polymorphic_Ptr<T>::Polymorphic_Ptr(const Polymorphic_Ptr<T>& other)
 {
 	copyFrom(other);
 }

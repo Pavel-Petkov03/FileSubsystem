@@ -1,10 +1,10 @@
 #pragma once
-#include "BaseCommand.hpp"
-class ViewCommand : public BaseCommand {
+#include "BaseDirectoryCommand.hpp"
+class ViewCommand : public BaseDirectoryCommand {
 public:
-	bool isUserAuthenticated(const User& user) override;
+	bool isUserAuthenticated(const User* user) override;
 };
 
-bool ViewCommand::isUserAuthenticated(const User& user) {
+bool ViewCommand::isUserAuthenticated(const User* user) {
 	return true;
 }
