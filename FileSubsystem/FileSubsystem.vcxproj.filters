@@ -104,5 +104,14 @@
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\FindCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\MakeDirCommand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveDirCommand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveFileCommand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

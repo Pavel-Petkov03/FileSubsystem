@@ -23,6 +23,8 @@ public:
 	friend std::ostream& operator<<(std::ostream& ofs, const BaseFile&);
 	std::string getPath() const;
 
+	friend class Directory;
+
 	friend class CdCommand;
 	friend class LsCommand;
 	friend class FindCommand;

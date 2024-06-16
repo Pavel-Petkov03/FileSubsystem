@@ -36,6 +36,8 @@ public:
 
     void clear();
 
+    void removeAtIndex(unsigned index);
+
     const F operator[](size_t index) const;
     F& operator[](size_t index);
 
@@ -249,6 +251,21 @@ void Vector<F>::clear()
     size = 0;
     capacity = 8;
     data = new F[capacity];
+}
+
+template<typename F>
+void Vector<F>::removeAtIndex(unsigned index)
+{
+    if (index >= size) {
+        throw std::out_of_range("Bond error");
+    }
+    int currentIndex = index;
+    while (currentIndex < size) {
+        std::swap(data[currentIndex], data[currentIndex + 1]);
+        currentIndex++;
+    }
+    data[size - 1] = F();
+    size--;
 }
 
 

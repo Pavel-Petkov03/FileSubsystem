@@ -10,8 +10,10 @@ private:
 	Vector<std::string> groups;
 	bool isInGroup(const User& user);
 public:
+	BaseFile* getChildWithName(std::string& str);
 	void addFile(const User& user, BaseFile* file);
 	void addGroup(const User& user, std::string& groupName);
+	void removeFile(const User& user, BaseFile* file);
 	BaseFile* clone() const override;
 	bool isAuthenticated(const User& user);
 	Directory() = default;
@@ -60,6 +62,17 @@ Directory::Directory(const std::string& name ,BaseFile* parent, const Vector<Pol
 
 
 
+BaseFile* Directory::getChildWithName(std::string& str)
+{
+
+	for (int i = 0; i < children.getSize(); i++) {
+		if (children[i]->name == str) {
+			return children[i].get();
+		}
+	}
+	return nullptr;
+}
+
 void Directory::addFile(const User& user, BaseFile* file)
 {
 	if (isAuthenticated(user)) {
@@ -78,6 +91,18 @@ void Directory::addGroup( const User& user, std::string& groupName)
 		//todo throw error
 	}
 	groups.pushBack(groupName);
+}
+
+void Directory::removeFile(const User& user, BaseFile* file)
+{
+	if (!isAuthenticated(user)) {
+		//todo throw error
+	}
+	for (int i = 0; i < children.getSize(); i++) {
+		if (file == children[i].get()) {
+			children.removeAtIndex(i);
+		}
+	}
 }
 
 BaseFile* Directory::clone() const

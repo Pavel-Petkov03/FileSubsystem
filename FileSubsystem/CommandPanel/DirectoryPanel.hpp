@@ -9,8 +9,10 @@ class DirectoryPanel : public BasePanel {
 private:
 	void printCreateCommands() const;
 	void printViewCommands() const;
+	void printAdminCommands() const;
 	void runCreateCommands(std::stringstream& context);
 	void runViewComamnds(std::stringstream& context);
+	void runAdminCommands(std::stringstream& context);
 	Directory* currentDir;
 public:
 	DirectoryPanel(BasePanel* prev, User* user);
@@ -27,7 +29,6 @@ void DirectoryPanel::printCreateCommands() const
 	std::cout << "   rm <fileName>" << std::endl;
 	std::cout << "   rmdir <dirName>" << std::endl;
 	std::cout << "   exec <fileName>" << std::endl;
-	std::cout << "   rmdir <dirName>" << std::endl;
 	std::cout << "   echo <text>" << std::endl;
 	std::cout << "   echo <text> > <fileName>" << std::endl;
 	std::cout << "   echo <text> >> <fileName>" << std::endl;
@@ -43,9 +44,26 @@ void DirectoryPanel::printViewCommands() const
 	std::cout << "   find <startPath> <findStr> " << std::endl;
 }
 
+void DirectoryPanel::printAdminCommands() const
+{
+	std::cout << "User related commands:" << std::endl;
+	std::cout << "   add_user_to_group <groupName>" << std::endl;
+	std::cout << "   remove_user_from_group <groupName>" << std::endl;
+	std::cout << std::endl;
+	std::cout << "File related commands" << std::endl;
+	std::cout << "   add_group_to_folder <folderName> <groupName>" << std::endl;
+	std::cout << "   remove_group_from_folder <folderName> <groupName>" << std::endl;
+}
+
 void DirectoryPanel::runCreateCommands(std::stringstream& context)
 {
+	if (true) {
 
+	}
+	else {
+		context.seekg(std::ios::beg);
+		runViewComamnds(context);
+	}
 }
 
 void DirectoryPanel::runViewComamnds(std::stringstream& context)
@@ -69,6 +87,17 @@ void DirectoryPanel::runViewComamnds(std::stringstream& context)
 	}
 }
 
+void DirectoryPanel::runAdminCommands(std::stringstream& context)
+{
+	if (true) {
+
+	}
+	else {
+		context.seekg(std::ios::beg);
+		runCreateCommands(context);
+	}
+}
+
 
 DirectoryPanel::DirectoryPanel(BasePanel* prev, User* user): BasePanel(prev, user) {
 	std::ifstream ifs("directory.txt");
@@ -87,24 +116,24 @@ void DirectoryPanel::printHeaderPanelMessage() const
 }
 
 void DirectoryPanel::runCommand(const std::string& command) {
+		
 	std::stringstream ss(command);
-	try {
-		
-		runViewComamnds(ss);
+	if (user->hasRole(RoleTypes::Admin)) {
+		runAdminCommands(ss);
 	}
-	catch (InvalidCommandInPanel& error) {
-		
-		if (user->hasRole(RoleTypes::Admin) || user->hasRole(RoleTypes::Editor)) {
-			ss.seekg(0, std::ios::beg);
-			runCreateCommands(ss);
-			return;
-		}
-		throw InvalidCommandInPanel("Invalid View command");
+	else if (user->hasRole(RoleTypes::Editor)) {
+		runCreateCommands(ss);
+	}
+	else {
+		runViewComamnds(ss);
 	}
 }
 
 void DirectoryPanel::printPrompth() const
 {
+	if (user->hasRole(RoleTypes::Admin)) {
+		printAdminCommands();
+	}
 	if (user->hasRole(RoleTypes::Admin) || user->hasRole(RoleTypes::Editor)) {
 		printCreateCommands();
 	}

@@ -36,6 +36,9 @@
     <ClInclude Include="Command\AdminCommands\LoginCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\EditCommands\EditCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\BaseDirectoryCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveFileCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveDirCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\MakeDirCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\CdCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\FindCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\LsCommand.hpp" />
