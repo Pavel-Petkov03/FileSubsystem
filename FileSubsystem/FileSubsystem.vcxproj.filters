@@ -92,5 +92,17 @@
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\CdCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\PwdCommand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\LsCommand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Errors\FileErrors.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\FindCommand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

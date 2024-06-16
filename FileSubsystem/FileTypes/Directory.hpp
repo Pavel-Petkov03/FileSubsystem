@@ -21,6 +21,8 @@ public:
 	friend std::istream& operator>>(std::istream& ifs, Directory& other);
 
 	friend class CdCommand;
+	friend class LsCommand;
+	friend class FindCommand;
 };
 
 
@@ -34,6 +36,9 @@ bool Directory::isAuthenticated(const User& user)
 
 bool Directory::isInGroup(const User& user)
 {
+	if (groups.getSize() == 0) {
+		return true;
+	}
 	for (int i = 0; i < groups.getSize(); i++) {
 		if (user.isInGroup(groups[i])) {
 			return true;

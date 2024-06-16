@@ -24,6 +24,8 @@ public:
 	std::string getPath() const;
 
 	friend class CdCommand;
+	friend class LsCommand;
+	friend class FindCommand;
 };
 
 

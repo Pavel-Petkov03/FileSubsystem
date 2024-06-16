@@ -2,8 +2,9 @@
 #include <sstream>
 #include "BasePanel.hpp"
 #include "../FileTypes/Directory.hpp"
-
+#include "../Command/DirectoryCommands/ViewCommands/PwdCommand.hpp"
 #include "../Command/DirectoryCommands/ViewCommands/CdCommand.hpp"
+#include "../Command/DirectoryCommands/ViewCommands/LsCommand.hpp"
 class DirectoryPanel : public BasePanel {
 private:
 	void printCreateCommands() const;
@@ -55,10 +56,10 @@ void DirectoryPanel::runViewComamnds(std::stringstream& context)
 		CdCommand().execute(currentDir, user, context);
 	}
 	else if (cmd == "ls") {
-
+		LsCommand().execute(currentDir, user, context);
 	}
 	else if (cmd == "pwd") {
-
+		PwdCommand().execute(currentDir, user, context);
 	}
 	else if (cmd == "find") {
 
