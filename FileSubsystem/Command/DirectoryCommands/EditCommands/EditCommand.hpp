@@ -1,7 +1,7 @@
 #pragma once
-#include "../Auth/Admin.hpp"
-#include "../Auth/Editor.hpp"
-#include "BaseDirectoryCommand.hpp"
+#include "../../../Auth/Editor.hpp"
+#include "../../../Auth/User.hpp"
+#include "../BaseDirectoryCommand.hpp"
 class EditCommand : public BaseDirectoryCommand {
 public:
 	virtual bool isUserAuthenticated(const User* user);

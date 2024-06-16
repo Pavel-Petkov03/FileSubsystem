@@ -1,5 +1,2 @@
-pavel petkov
-gosho otpochivka
-1 2
-  0
-  0
+pavel petkov 2
+  2

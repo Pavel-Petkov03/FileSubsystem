@@ -21,7 +21,7 @@ void RegisterCommand::_register(std::stringstream& stream)
 	std::string username;
 	std::string password;
 	stream >> username >> password;
-	ofs << username << " " << password << " " << "0" << std::endl;
+	ofs << username << " " << password << " " << "2" << std::endl;
 	ofs.close();
 	throw UserAuthenticationRedirectError("User created");
 }
@@ -39,8 +39,9 @@ void RegisterCommand::execute(User*& user, std::stringstream& context) {
 	}
 	catch (UserNotInDatabaseException& error) {
 		context.seekg(0, std::ios::beg);
+		user = new User(RoleTypes::Viewer);
 		_register(context);
-		user = new User();
+		
 	}
 	catch (UserInvalidCredentials& error) {
 		std::cout << "There is user with this name" << std::endl;

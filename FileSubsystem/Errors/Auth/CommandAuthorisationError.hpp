@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdexcept>
-
+#pragma once
 class CommandAuthorisationError : public std::runtime_error {
 public:
     CommandAuthorisationError(const std::string& message)
@@ -26,6 +26,7 @@ public:
 };
 
 class AdminAuthenticationRedirectError : public RedirectError {
+public:
     AdminAuthenticationRedirectError(const std::string& message)
         : RedirectError(message) {}
 };

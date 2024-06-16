@@ -16,6 +16,7 @@ public:
 
 AdminPanel::AdminPanel(BasePanel* prev, User* user) : BasePanel(prev , user)
 {
+
 }
 
 void AdminPanel::printPrompth() const

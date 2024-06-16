@@ -34,10 +34,10 @@
     <ClInclude Include="Command\AdminCommands\BaseAdminCommand.hpp" />
     <ClInclude Include="Command\AdminCommands\RegisterCommand.hpp" />
     <ClInclude Include="Command\AdminCommands\LoginCommand.hpp" />
-    <ClInclude Include="Command\EditCommand.hpp" />
-    <ClInclude Include="Command\BaseCommand.hpp" />
-    <ClInclude Include="Command\BaseDirectoryCommand.hpp" />
-    <ClInclude Include="Command\ViewCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\EditCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\BaseDirectoryCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\CdCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\ViewCommand.hpp" />
     <ClInclude Include="Errors\Auth\CommandAuthorisationError.hpp" />
     <ClInclude Include="Errors\Panel\InvalidCommandInPanel.hpp" />
     <ClInclude Include="FileTypes\BaseFile.hpp" />

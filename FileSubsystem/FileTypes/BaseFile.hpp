@@ -8,20 +8,22 @@
 #include <ostream>
 #pragma warning(disable: 4996)
 class BaseFile {
-private:
+protected:
 	std::string creationDate;
 	std::string modificationDate;
 	std::string name;
 	BaseFile* parent;
-	const User* creator;
 	std::string getCurrentDateTime() const;
 	std::string getPathRecurse(const BaseFile* current) const;
 public:
 	virtual ~BaseFile() = default;
 	virtual BaseFile* clone() const = 0;
-	BaseFile(std::string name, const User& creator, BaseFile* parent);
+	BaseFile(std::string name, BaseFile* parent);
+	BaseFile() = default;
 	friend std::ostream& operator<<(std::ostream& ofs, const BaseFile&);
 	std::string getPath() const;
+
+	friend class CdCommand;
 };
 
 
@@ -43,9 +45,8 @@ std::string BaseFile::getPathRecurse(const BaseFile* current) const
 	return getPathRecurse(current->parent) + "/" + current->name;
 }
 
-BaseFile::BaseFile(std::string name, const User& creator, BaseFile* parent)
+BaseFile::BaseFile(std::string name, BaseFile* parent)
 {
-	this->creator = &creator;
 	this->creationDate = getCurrentDateTime();
 	this->modificationDate = getCurrentDateTime();
 	this->name = name;

@@ -1,6 +1,5 @@
 #pragma once
 #include "Role.hpp"
-#include "../Command/EditCommand.hpp"
 class Editor: public BaseRole {
 public:
 	BaseRole* clone() const override;

@@ -14,15 +14,19 @@ public:
 	void addGroup(const User& user, std::string& groupName);
 	BaseFile* clone() const override;
 	bool isAuthenticated(const User& user);
-	Directory(const std::string& name, const User& creator, BaseFile* parent);
-	Directory(const std::string& name, const User& creator, BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<std::string>& groups);
+	Directory() = default;
+	Directory(const std::string& name, BaseFile* parent);
+	Directory(const std::string& name, BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<std::string>& groups);
 	friend std::ostream& operator<<(std::ostream& ofs, const Directory& other);
+	friend std::istream& operator>>(std::istream& ifs, Directory& other);
+
+	friend class CdCommand;
 };
 
 
 bool Directory::isAuthenticated(const User& user)
 {
-	if (user.hasRole(RoleTypes::Admin)) {
+	if (!parent || user.hasRole(RoleTypes::Admin)) {
 		return true;
 	}
 	return isInGroup(user);
@@ -38,13 +42,13 @@ bool Directory::isInGroup(const User& user)
 	return false;
 }
 
-Directory::Directory(const std::string& name, const User& creator, BaseFile* parent) : BaseFile(name, creator, parent)
+Directory::Directory(const std::string& name ,BaseFile* parent) : BaseFile(name, parent)
 {
 
 }
 
-Directory::Directory(const std::string& name, const User& creator, BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<std::string>& groups) :
-	BaseFile(name, creator, parent), children(children), groups(groups)
+Directory::Directory(const std::string& name ,BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<std::string>& groups) :
+	BaseFile(name, parent), children(children), groups(groups)
 {
 
 }
@@ -82,4 +86,9 @@ std::ostream& operator<<(std::ostream& ofs, const Directory& directory)
 	ofs << directory.children;
 	ofs << directory.groups;
 	return ofs;
+}
+
+std::istream& operator>>(std::istream& ifs, Directory& other)
+{
+	return ifs;
 }

@@ -44,19 +44,16 @@
     <ClInclude Include="Auth\Viewer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\ViewCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\ViewCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Auth\Editor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\EditCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\EditCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileTypes\Directory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Command\BaseCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Vector.hpp">
@@ -80,7 +77,7 @@
     <ClInclude Include="Command\AdminCommands\LoginCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\BaseDirectoryCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\BaseDirectoryCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command\AdminCommands\BaseAdminCommand.hpp">
@@ -90,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CommandPanel\DirectoryPanel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\CdCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

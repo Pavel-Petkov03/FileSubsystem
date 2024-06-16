@@ -6,6 +6,7 @@ class LoginCommand : public BaseAdminCommand {
 private:
 	void initUser(User*& user, std::stringstream& userContext);
 	void login(std::ifstream& ifs, User*& user, std::stringstream& context);
+	static RoleTypes getRoleType(int n);
 public:
 	void execute(User*& user, std::stringstream&  context) override;
 	friend class RegisterCommand;
@@ -14,7 +15,10 @@ public:
 
 void LoginCommand::initUser(User*& user, std::stringstream& userContext)
 {
-	user = new User();
+	int roleType;
+	userContext >> roleType;
+
+	user = new User(getRoleType(roleType));
 	while (true) {
 		std::string groupName;
 		userContext >> groupName;
@@ -53,6 +57,21 @@ void LoginCommand::login(std::ifstream& ifs, User*& user, std::stringstream& con
 				throw UserInvalidCredentials("Invallid password");
 			}
 		}
+	}
+}
+
+RoleTypes LoginCommand::getRoleType(int n)
+{
+	switch (n)
+	{
+	case 0:
+		return RoleTypes::Admin;
+	case 1:
+		return RoleTypes::Editor;
+	case 2:
+		return RoleTypes::Viewer;
+	default:
+		break;
 	}
 }
 
