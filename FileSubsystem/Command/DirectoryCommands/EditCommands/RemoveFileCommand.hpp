@@ -1,8 +1,8 @@
 #pragma once
-#include "EditCommand.hpp"
+#include "CreateCommand.hpp"
 #include "../../../FileTypes/ExecutableFiles/ExecutableFile.hpp"
 #include "../../../Utility/MyString.h"
-class RemoveFileCommand : public EditCommand {
+class RemoveFileCommand : public CreateCommand {
 public:
 	void runTask(Directory*& file, User*& user, std::stringstream& context);
 };

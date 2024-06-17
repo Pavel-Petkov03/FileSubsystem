@@ -1,7 +1,7 @@
 #pragma once
-#include "EditCommand.hpp"
+#include "CreateCommand.hpp"
 #include "../../../Utility/MyString.h"
-class MakeDirCommand : public EditCommand {
+class MakeDirCommand : public CreateCommand {
 public:
 	void runTask(Directory*& file, User*& user, std::stringstream& context);
 };

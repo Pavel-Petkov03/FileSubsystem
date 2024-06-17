@@ -18,8 +18,8 @@ protected:
 public:
 	virtual ~BaseFile() = default;
 	virtual BaseFile* clone() const = 0;
-	BaseFile(const MyString& name, BaseFile* parent);
 	BaseFile() = default;
+	BaseFile(const MyString& name, BaseFile* parent);
 	friend std::ostream& operator<<(std::ostream& ofs, const BaseFile&);
 	MyString getPath() const;
 

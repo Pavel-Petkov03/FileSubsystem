@@ -53,7 +53,7 @@
     <ClInclude Include="Auth\Editor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\DirectoryCommands\EditCommands\EditCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\CreateCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileTypes\Directory.hpp">

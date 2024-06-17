@@ -9,11 +9,12 @@ private:
 	Vector<Polymorphic_Ptr<BaseFile>> children;
 	Vector<MyString> groups;
 	bool isInGroup(const User& user);
-public:
-	BaseFile* getChildWithName(const MyString& str);
 	void addFile(const User& user, BaseFile* file);
 	void addGroup(const User& user, const MyString& groupName);
 	void removeFile(const User& user, BaseFile* file);
+public:
+	BaseFile* getChildWithName(const MyString& str);
+	
 	BaseFile* clone() const override;
 	bool isAuthenticated(const User& user);
 	Directory() = default;
@@ -26,6 +27,11 @@ public:
 	friend class CdCommand;
 	friend class LsCommand;
 	friend class FindCommand;
+
+	friend class RemoveFileCommand;
+	friend class RemoveDirCommand;
+	friend class TouchCommand;
+	friend class MakeDirCommand;
 };
 
 

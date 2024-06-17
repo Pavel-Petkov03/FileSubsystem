@@ -1,6 +1,6 @@
 #pragma once
-#include "EditCommand.hpp"
-class RemoveDirCommand : public EditCommand {
+#include "CreateCommand.hpp"
+class RemoveDirCommand : public CreateCommand {
 public:
 	void runTask(Directory*& file, User*& user, std::stringstream& context);
 };
