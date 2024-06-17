@@ -12,8 +12,8 @@ void LsCommand::runTask(Directory*& file, User*& user, std::stringstream& contex
 		CdCommand cd;
 		Directory* currentDir = file;
 		cd.logToDirectory(currentDir, user, context);
-		for (int i = 0; i < file->children.getSize(); i++) {
-			BaseFile* cur = file->children[i].get();
+		for (int i = 0; i < currentDir->children.getSize(); i++) {
+			BaseFile* cur = currentDir->children[i].get();
 			std::cout << cur->modificationDate << " " << cur->name << std::endl;
 		}
 	}

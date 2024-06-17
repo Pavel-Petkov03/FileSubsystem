@@ -5,14 +5,15 @@
 #include "../Auth/Viewer.hpp"
 #include "../Auth/Editor.hpp"
 #include "../Auth/Admin.hpp"
+#include "../../Utility/MyString.h"
 class User {
 private:
 	Polymorphic_Ptr<BaseRole> role;
-	Vector<std::string> groupsIn;
+	Vector<MyString> groupsIn;
 public: 
 	bool hasRole(const RoleTypes& type) const;
-	bool isInGroup(std::string& groupName) const;
-	void addToGroup(std::string& groupName);
+	bool isInGroup(const MyString& groupName) const;
+	void addToGroup(const MyString& groupName);
 	User(const RoleTypes& role);
 };
 
@@ -22,7 +23,7 @@ bool User::hasRole(const RoleTypes& type) const
 	return type == role.get()->getType();
 }
 
-bool User::isInGroup(std::string& groupName) const
+bool User::isInGroup(const MyString& groupName) const
 {
 	for (int i = 0; i < groupsIn.getSize(); i++) {
 		if (groupName == groupsIn[i]) {
@@ -32,7 +33,7 @@ bool User::isInGroup(std::string& groupName) const
 	return false;
 }
 
-void User::addToGroup(std::string& groupName)
+void User::addToGroup(const MyString& groupName)
 {
 	groupsIn.pushBack(groupName);
 }

@@ -5,7 +5,7 @@ class FindCommand : public ViewCommand {
 private:
 	void find(Directory*& file, User*& user, std::string nameToFind);
 	void runTask(Directory*& file, User*& user, std::stringstream& context) override;
-	bool isSubstring(std::string text, std::string substr);
+	bool isSubstring(const MyString& text, std::string substr);
 };
 
 
@@ -27,7 +27,6 @@ void FindCommand::find(Directory*& file, User*& user, std::string nameToFind){
 
 		}
 	}
-
 }
 
 void FindCommand::runTask(Directory*& file, User*& user, std::stringstream& context) {
@@ -41,7 +40,7 @@ void FindCommand::runTask(Directory*& file, User*& user, std::stringstream& cont
 	}
 }
 
-bool FindCommand::isSubstring(std::string text, std::string substr)
+bool FindCommand::isSubstring(const MyString&, std::string substr)
 {
 	return true;
 }

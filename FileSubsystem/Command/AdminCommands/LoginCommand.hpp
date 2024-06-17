@@ -20,7 +20,7 @@ void LoginCommand::initUser(User*& user, std::stringstream& userContext)
 
 	user = new User(getRoleType(roleType));
 	while (true) {
-		std::string groupName;
+		MyString groupName;
 		userContext >> groupName;
 		if (userContext.eof()) {
 			return;
@@ -35,21 +35,25 @@ void LoginCommand::login(std::ifstream& ifs, User*& user, std::stringstream& con
 		throw std::exception("User already logged in");
 	}
 
-	std::string username;
-	std::string password;
+	MyString username;
+	MyString password;
 	context >> username >> password;
+	if (!username || !password) {
+		std::cout << "username or password cannot be empty" << std::endl;
+		return;
+	}
 	while (true) {
 		char buffer[1024];
 		ifs.getline(buffer, 1024);
 		std::stringstream ss(buffer);
-		std::string currentUsername;
-		std::string currentPassword;
+		MyString currentUsername;
+		MyString currentPassword;
 		ss >> currentUsername >> currentPassword;
 		if (ifs.eof()) {
 			throw UserNotInDatabaseException("There is no such user with this username");
 		}
-		if (currentUsername == username) {
-			if (password == currentPassword) {
+		if (currentUsername == username && username) {
+			if (password == currentPassword && password) {
 				initUser(user, ss);
 				throw UserAuthenticationRedirectError("redirect");
 			}

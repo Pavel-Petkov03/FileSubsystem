@@ -1,9 +1,10 @@
 #pragma once
-
+#include "../../Utility/Vector.hpp"
 #include "ExecutableFile.hpp"
+#include "../../Utility/MyString.h"
 class TxtFile : public ExecutableFile {
 private:
-	std::string text;
+	Vector<MyString> fileText;
 public:
 	void execute() const override;
 };
@@ -11,5 +12,7 @@ public:
 
 void TxtFile::execute() const
 {
-	std::cout << text;
+	for (int i = 0; i < fileText.getSize(); i++) {
+		std::cout << fileText[i] << std::endl;
+	}
 }

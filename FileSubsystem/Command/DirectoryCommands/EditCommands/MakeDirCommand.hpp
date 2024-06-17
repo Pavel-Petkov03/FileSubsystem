@@ -1,12 +1,13 @@
 #pragma once
 #include "EditCommand.hpp"
+#include "../../../Utility/MyString.h"
 class MakeDirCommand : public EditCommand {
 public:
 	void runTask(Directory*& file, User*& user, std::stringstream& context);
 };
 
 void MakeDirCommand::runTask(Directory*& file, User*& user, std::stringstream& context) {
-	std::string newDirName;
+	MyString newDirName;
 	context >> newDirName;
 	if (file->getChildWithName(newDirName)) {
 		std::cout << "File with name " << newDirName << " already in folder" << std::endl;

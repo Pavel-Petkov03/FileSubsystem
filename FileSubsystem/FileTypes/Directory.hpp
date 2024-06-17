@@ -7,18 +7,19 @@
 class Directory : public BaseFile {
 private:
 	Vector<Polymorphic_Ptr<BaseFile>> children;
-	Vector<std::string> groups;
+	Vector<MyString> groups;
 	bool isInGroup(const User& user);
 public:
-	BaseFile* getChildWithName(std::string& str);
+	BaseFile* getChildWithName(const MyString& str);
 	void addFile(const User& user, BaseFile* file);
-	void addGroup(const User& user, std::string& groupName);
+	void addGroup(const User& user, const MyString& groupName);
 	void removeFile(const User& user, BaseFile* file);
 	BaseFile* clone() const override;
 	bool isAuthenticated(const User& user);
 	Directory() = default;
-	Directory(const std::string& name, BaseFile* parent);
-	Directory(const std::string& name, BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<std::string>& groups);
+	Directory(const MyString& name, BaseFile* parent);
+	Directory(const MyString& name, BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<MyString>& groups);
+
 	friend std::ostream& operator<<(std::ostream& ofs, const Directory& other);
 	friend std::istream& operator>>(std::istream& ifs, Directory& other);
 
@@ -49,12 +50,12 @@ bool Directory::isInGroup(const User& user)
 	return false;
 }
 
-Directory::Directory(const std::string& name ,BaseFile* parent) : BaseFile(name, parent)
+Directory::Directory(const MyString& name ,BaseFile* parent) : BaseFile(name, parent)
 {
 
 }
 
-Directory::Directory(const std::string& name ,BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<std::string>& groups) :
+Directory::Directory(const MyString& name ,BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<MyString>& groups) :
 	BaseFile(name, parent), children(children), groups(groups)
 {
 
@@ -62,7 +63,7 @@ Directory::Directory(const std::string& name ,BaseFile* parent, const Vector<Pol
 
 
 
-BaseFile* Directory::getChildWithName(std::string& str)
+BaseFile* Directory::getChildWithName(const MyString& str)
 {
 
 	for (int i = 0; i < children.getSize(); i++) {
@@ -82,7 +83,7 @@ void Directory::addFile(const User& user, BaseFile* file)
 	// todo throw
 }
 
-void Directory::addGroup( const User& user, std::string& groupName)
+void Directory::addGroup( const User& user, const MyString& groupName)
 {
 	if (groups.hasElement(groupName)) {
 		// todo throw error

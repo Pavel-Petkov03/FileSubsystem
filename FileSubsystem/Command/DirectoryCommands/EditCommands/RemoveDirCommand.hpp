@@ -6,14 +6,15 @@ public:
 };
 
 void RemoveDirCommand::runTask(Directory*& file, User*& user, std::stringstream& context) {
-	std::string fileName;
+	MyString fileName;
 	context >> fileName;
 	BaseFile* currentFile = file->getChildWithName(fileName);
 	if (currentFile) {
 		if (Directory* d = dynamic_cast<Directory*>(currentFile)) {
-			std::cout << "Cant remove directory with command rm(try using rmdir)" << std::endl;
+			file->removeFile(*user, currentFile);
 			return;
 		}
-		file->removeFile(*user, currentFile);
+		std::cout << "Can't remove directory with command rm(try using rmdir)" << std::endl;
+		return;
 	}
 }

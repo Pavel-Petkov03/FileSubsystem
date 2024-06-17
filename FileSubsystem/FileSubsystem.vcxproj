@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Utility\MyString.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth\Admin.hpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="Command\AdminCommands\LoginCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\EditCommands\EditCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\BaseDirectoryCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\EditCommands\TouchCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveFileCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveDirCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\EditCommands\MakeDirCommand.hpp" />
@@ -50,7 +52,10 @@
     <ClInclude Include="FileTypes\BaseFile.hpp" />
     <ClInclude Include="FileTypes\Directory.hpp" />
     <ClInclude Include="FileTypes\ExecutableFiles\ExecutableFile.hpp" />
+    <ClInclude Include="FileTypes\ExecutableFiles\ExeFile.hpp" />
+    <ClInclude Include="FileTypes\ExecutableFiles\LinkFile.hpp" />
     <ClInclude Include="FileTypes\ExecutableFiles\TxtFile.hpp" />
+    <ClInclude Include="Utility\MyString.h" />
     <ClInclude Include="Utility\Vector.hpp" />
     <ClInclude Include="Utility\PolymorphicPtr.hpp" />
   </ItemGroup>

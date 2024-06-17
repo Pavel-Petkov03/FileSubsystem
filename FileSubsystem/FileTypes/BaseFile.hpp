@@ -9,47 +9,51 @@
 #pragma warning(disable: 4996)
 class BaseFile {
 protected:
-	std::string creationDate;
-	std::string modificationDate;
-	std::string name;
+	MyString creationDate;
+	MyString modificationDate;
+	MyString name;
 	BaseFile* parent;
-	std::string getCurrentDateTime() const;
-	std::string getPathRecurse(const BaseFile* current) const;
+	MyString getCurrentDateTime() const;
+	MyString getPathRecurse(const BaseFile* current) const;
 public:
 	virtual ~BaseFile() = default;
 	virtual BaseFile* clone() const = 0;
-	BaseFile(std::string name, BaseFile* parent);
+	BaseFile(const MyString& name, BaseFile* parent);
 	BaseFile() = default;
 	friend std::ostream& operator<<(std::ostream& ofs, const BaseFile&);
-	std::string getPath() const;
+	MyString getPath() const;
 
 	friend class Directory;
 
 	friend class CdCommand;
 	friend class LsCommand;
 	friend class FindCommand;
+	friend class TouchCommand;
 };
 
 
-std::string BaseFile::getCurrentDateTime() const
+MyString BaseFile::getCurrentDateTime() const
 {
 	auto now = std::chrono::system_clock::now();
 	std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
 	std::tm* now_tm = std::localtime(&now_time_t);
 	std::stringstream ss;
 	ss << std::put_time(now_tm, "%Y %m %d %H %M");
-	return ss.str();
+	return MyString(ss.str().c_str());
 }
 
-std::string BaseFile::getPathRecurse(const BaseFile* current) const
+MyString BaseFile::getPathRecurse(const BaseFile* current) const
 {
 	if (!current->parent) {
-		return std::string("root");
+		return MyString("root");
 	}
-	return getPathRecurse(current->parent) + "/" + current->name;
+	MyString result = getPathRecurse(current->parent);
+	result += "/";
+	result += current->name;
+	return result;
 }
 
-BaseFile::BaseFile(std::string name, BaseFile* parent)
+BaseFile::BaseFile(const MyString& name, BaseFile* parent)
 {
 	this->creationDate = getCurrentDateTime();
 	this->modificationDate = getCurrentDateTime();
@@ -57,7 +61,7 @@ BaseFile::BaseFile(std::string name, BaseFile* parent)
 	this->parent = parent;
 }
 
-std::string BaseFile::getPath() const
+MyString BaseFile::getPath() const
 {
 	return getPathRecurse(this); 
 }

@@ -3,6 +3,7 @@
 #include "../Errors/Panel/InvalidCommandInPanel.hpp"
 #include "../Auth/User.hpp"
 #include <string>
+#include "../Utility/MyString.h"
 class BasePanel {
 protected:
 	BasePanel* previousPanel;
@@ -11,9 +12,10 @@ public:
 	virtual void printPrompth() const = 0;
 	void run();
 	virtual void printHeaderPanelMessage() const = 0;
+	virtual void printCommandLocation() const = 0;
 	BasePanel(BasePanel* prev, User* user);
 	virtual ~BasePanel() = default;
-	virtual void runCommand(const std::string& command) = 0;
+	virtual void runCommand(const MyString& command) = 0;
 	User* getUser() const;
 };
 
@@ -21,8 +23,9 @@ public:
 
 void BasePanel::run() {
 	printHeaderPanelMessage();
-	std::string command;
-	std::getline(std::cin, command);
+	MyString command;
+	printCommandLocation();
+	command.getLine(std::cin);
 	while (true) {
 		try {
 			if (command == "--options") {
@@ -39,7 +42,8 @@ void BasePanel::run() {
 			std::cout << error.what() << std::endl;
 			std::cout << "Type --options to list all valid commands" << std::endl;
 		}
-		std::getline(std::cin, command);
+		printCommandLocation();
+		command.getLine(std::cin);
 	}
 }
 

@@ -5,6 +5,13 @@
 #include "../Command/DirectoryCommands/ViewCommands/PwdCommand.hpp"
 #include "../Command/DirectoryCommands/ViewCommands/CdCommand.hpp"
 #include "../Command/DirectoryCommands/ViewCommands/LsCommand.hpp"
+
+#include "../Command/DirectoryCommands/EditCommands/MakeDirCommand.hpp"
+#include "../Command/DirectoryCommands/EditCommands/RemoveDirCommand.hpp"
+#include "../Command/DirectoryCommands/EditCommands/RemoveFileCommand.hpp"
+#include "../Command/DirectoryCommands/EditCommands/TouchCommand.hpp"
+
+
 class DirectoryPanel : public BasePanel {
 private:
 	void printCreateCommands() const;
@@ -13,11 +20,12 @@ private:
 	void runCreateCommands(std::stringstream& context);
 	void runViewComamnds(std::stringstream& context);
 	void runAdminCommands(std::stringstream& context);
+	void printCommandLocation() const override;
 	Directory* currentDir;
 public:
 	DirectoryPanel(BasePanel* prev, User* user);
 	void printHeaderPanelMessage() const override;
-	void runCommand(const std::string& command) override;
+	void runCommand(const MyString& command) override;
 	void printPrompth() const override;
 };
 
@@ -57,8 +65,19 @@ void DirectoryPanel::printAdminCommands() const
 
 void DirectoryPanel::runCreateCommands(std::stringstream& context)
 {
-	if (true) {
-
+	MyString cmd;
+	context >> cmd;
+	if (cmd == "mkdir") {
+		MakeDirCommand().execute(currentDir, user, context);
+	}
+	else if (cmd == "rmdir") {
+		RemoveDirCommand().execute(currentDir, user, context);
+	}
+	else if (cmd == "rm") {
+		RemoveFileCommand().execute(currentDir, user, context);
+	}
+	else if (cmd == "touch") {
+		TouchCommand().execute(currentDir, user, context);
 	}
 	else {
 		context.seekg(std::ios::beg);
@@ -68,7 +87,7 @@ void DirectoryPanel::runCreateCommands(std::stringstream& context)
 
 void DirectoryPanel::runViewComamnds(std::stringstream& context)
 {
-	std::string cmd;
+	MyString cmd;
 	context >> cmd;
 	if (cmd == "cd") {
 		CdCommand().execute(currentDir, user, context);
@@ -98,12 +117,17 @@ void DirectoryPanel::runAdminCommands(std::stringstream& context)
 	}
 }
 
+void DirectoryPanel::printCommandLocation() const
+{
+	std::cout << currentDir->getPath() << "# ";
+}
+
 
 DirectoryPanel::DirectoryPanel(BasePanel* prev, User* user): BasePanel(prev, user) {
 	std::ifstream ifs("directory.txt");
 
 	if (!ifs.is_open()) {
-		std::string rootName = "root";
+		MyString rootName = "root";
 		currentDir = new Directory(rootName, nullptr);
 	}
 	currentDir = new Directory();
@@ -115,9 +139,9 @@ void DirectoryPanel::printHeaderPanelMessage() const
 	std::cout << "Welcome to Directory" << std::endl;
 }
 
-void DirectoryPanel::runCommand(const std::string& command) {
-		
-	std::stringstream ss(command);
+void DirectoryPanel::runCommand(const MyString& command) {
+	
+	std::stringstream ss(command.c_str());
 	if (user->hasRole(RoleTypes::Admin)) {
 		runAdminCommands(ss);
 	}

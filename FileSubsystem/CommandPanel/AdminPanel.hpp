@@ -9,8 +9,9 @@ class AdminPanel : public BasePanel {
 public:
 	AdminPanel(BasePanel* prev, User* user);
 	void printPrompth() const override;
-	void runCommand(const std::string& command) override;
+	void runCommand(const MyString& command) override;
 	void printHeaderPanelMessage() const override;
+	void printCommandLocation() const override;
 };
 
 
@@ -32,7 +33,7 @@ void AdminPanel::printPrompth() const
 	std::cout << "   remove_group_from_folder <folderName> <groupName>" << std::endl;
 }
 
-void AdminPanel::runCommand(const std::string& command)
+void AdminPanel::runCommand(const MyString& command)
 {
 	std::stringstream ss(command);
 	std::string cmd;
@@ -63,4 +64,9 @@ void AdminPanel::runCommand(const std::string& command)
 void AdminPanel::printHeaderPanelMessage() const
 {
 	std::cout << "Welcome to Admin Panel" << std::endl;
+}
+
+void AdminPanel::printCommandLocation() const
+{
+	std::cout << "admin# ";
 }

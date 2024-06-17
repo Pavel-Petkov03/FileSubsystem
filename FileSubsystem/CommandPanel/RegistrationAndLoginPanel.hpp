@@ -7,8 +7,9 @@
 class LoginAndRegistrationPanel : public BasePanel {
 public:
 	void printHeaderPanelMessage() const override;
-	void runCommand(const std::string& str) override;
+	void runCommand(const MyString& str) override;
 	void printPrompth() const override;
+	void printCommandLocation() const override;
 	LoginAndRegistrationPanel(BasePanel* prev, User* user);
 };
 
@@ -24,6 +25,11 @@ void LoginAndRegistrationPanel::printPrompth() const
 	std::cout << "   login <username> <password>" << std::endl;
 }
 
+void LoginAndRegistrationPanel::printCommandLocation() const
+{
+	std::cout << "registration# ";
+}
+
 LoginAndRegistrationPanel::LoginAndRegistrationPanel(BasePanel* prev, User* user) : BasePanel(prev, user)
 {
 
@@ -34,11 +40,11 @@ void LoginAndRegistrationPanel::printHeaderPanelMessage() const
 	std::cout << "Welcome to registration page" << std::endl;
 }
 
-void LoginAndRegistrationPanel::runCommand(const std::string& command)
+void LoginAndRegistrationPanel::runCommand(const MyString& command)
 {
 
-	std::stringstream ss(command);
-	std::string cmd;
+	std::stringstream ss(command.c_str());
+	MyString cmd;
 	ss >> cmd;
 
 	if (cmd == "login") {
