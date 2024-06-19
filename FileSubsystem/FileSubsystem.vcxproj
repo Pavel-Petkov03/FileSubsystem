@@ -29,9 +29,11 @@
     <ClCompile Include="CommandPanel\cpp\BasePanel.cpp" />
     <ClCompile Include="CommandPanel\cpp\DirectoryPanel.cpp" />
     <ClCompile Include="CommandPanel\cpp\RegistrationAndLoginPanel.cpp" />
-    <ClCompile Include="Command\AdminCommands\cpp\LoginCommand.cpp" />
-    <ClCompile Include="Command\AdminCommands\cpp\RegisterCommand.cpp" />
-    <ClCompile Include="Command\AdminCommands\headers\RegisterCommand.h" />
+    <ClCompile Include="Command\AuthCommands\cpp\LoginCommand.cpp" />
+    <ClCompile Include="Command\AuthCommands\cpp\RegisterCommand.cpp" />
+    <ClCompile Include="Command\AuthCommands\headers\RegisterCommand.h" />
+    <ClCompile Include="Command\DirectoryCommands\AdminCommands\FileRelated\cpp\AddGroupToFolder.cpp" />
+    <ClCompile Include="Command\DirectoryCommands\AdminCommands\FileRelated\cpp\RemoveGroupFromFolderCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\BaseDirectoryCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\CreateCommands\cpp\CreateCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\CreateCommands\cpp\MakeDirCommand.cpp" />
@@ -62,8 +64,10 @@
     <ClInclude Include="CommandPanel\headers\BasePanel.h" />
     <ClInclude Include="CommandPanel\headers\DirectoryPanel.h" />
     <ClInclude Include="CommandPanel\headers\RegistrationAndLoginPanel.h" />
-    <ClInclude Include="Command\AdminCommands\headers\BaseAdminCommand.h" />
-    <ClInclude Include="Command\AdminCommands\headers\LoginCommand.h" />
+    <ClInclude Include="Command\AuthCommands\headers\BaseAdminCommand.h" />
+    <ClInclude Include="Command\AuthCommands\headers\LoginCommand.h" />
+    <ClInclude Include="Command\DirectoryCommands\AdminCommands\FileRelated\headers\AddGroupToFolderCommand.h" />
+    <ClInclude Include="Command\DirectoryCommands\AdminCommands\FileRelated\headers\RemoveGroupFromFolderCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\BaseDirectoryCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\CreateCommands\headers\CreateCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\CreateCommands\headers\RemoveDirCommand.h" />

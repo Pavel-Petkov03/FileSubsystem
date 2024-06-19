@@ -11,6 +11,8 @@
 #include "../../Command/DirectoryCommands/ViewCommands/headers/ExecuteCommand.h"
 #include "../../Command/DirectoryCommands/ViewCommands/headers/EchoCommand.h"
 
+#include "../../Command/DirectoryCommands/AdminCommands/FileRelated/headers/AddGroupToFolderCommand.h"
+#include "../../Command/DirectoryCommands/AdminCommands/FileRelated/headers/RemoveGroupFromFolderCommand.h"
 #include <fstream>
 
 void DirectoryPanel::printCreateCommands() const
@@ -38,13 +40,10 @@ void DirectoryPanel::printViewCommands() const
 
 void DirectoryPanel::printAdminCommands() const
 {
-	std::cout << "User related commands:" << std::endl;
-	std::cout << "   add_user_to_group <groupName>" << std::endl;
-	std::cout << "   remove_user_from_group <groupName>" << std::endl;
-	std::cout << std::endl;
-	std::cout << "File related commands" << std::endl;
-	std::cout << "   add_group_to_folder <folderName> <groupName>" << std::endl;
-	std::cout << "   remove_group_from_folder <folderName> <groupName>" << std::endl;
+
+	std::cout << "Admin commands" << std::endl;
+	std::cout << "   add_group_to_folder <groupName>" << std::endl;
+	std::cout << "   remove_group_from_folder <groupName>" << std::endl;
 }
 
 void DirectoryPanel::runCreateCommands(std::stringstream& context)
@@ -95,8 +94,13 @@ void DirectoryPanel::runViewComamnds(std::stringstream& context)
 
 void DirectoryPanel::runAdminCommands(std::stringstream& context)
 {
-	if (true) {
-
+	MyString cmd;
+	context >> cmd;
+	if (cmd == "add_group_to_folder") {
+		AddGroupToFolderCommand().execute(currentDir, user, context);
+	}
+	else if (cmd == "remove_group_from_folder") {
+		RemoveGroupFromFolderCommand().execute(currentDir, user, context);
 	}
 	else {
 		context.seekg(std::ios::beg);

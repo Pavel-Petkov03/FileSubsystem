@@ -24,9 +24,11 @@ void Runner::chooseAdminPanel()
 		std::cin >> n;
 		if (n == 1) {
 			currentPanel = new DirectoryPanel(currentPanel.get(), currentPanel->getUser());
+			return;
 		}
 		else if (n == 2) {
 			currentPanel = new AdminPanel(currentPanel.get(), currentPanel->getUser());
+			return;
 		}
 		std::cout << "Invalid command" << std::endl;
 		std::cin >> n;
@@ -48,6 +50,8 @@ void Runner::run()
 			User* user = currentPanel->getUser();
 			if (user->hasRole(RoleTypes::Admin)) {
 				chooseAdminPanel();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.clear();
 				continue;
 			}
 			currentPanel = new DirectoryPanel(currentPanel.get(), user);

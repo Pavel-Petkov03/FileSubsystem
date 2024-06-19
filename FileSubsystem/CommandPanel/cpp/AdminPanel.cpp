@@ -9,14 +9,11 @@ AdminPanel::AdminPanel(BasePanel* prev, User* user) : BasePanel(prev, user)
 void AdminPanel::printPrompth() const
 {
 	std::cout << "User related commands:" << std::endl;
-	std::cout << "   change_user_role <username>";
+	std::cout << "   change_user_role <username>" << std::endl;
 	std::cout << "   delete_user <username>" << std::endl;
 	std::cout << "   add_user_to_group <groupName>" << std::endl;
 	std::cout << "   remove_user_from_group <groupName>" << std::endl;
 	std::cout << std::endl;
-	std::cout << "File related commands" << std::endl;
-	std::cout << "   add_group_to_folder <folderName> <groupName>" << std::endl;
-	std::cout << "   remove_group_from_folder <folderName> <groupName>" << std::endl;
 }
 
 void AdminPanel::runCommand(const MyString& command)
@@ -34,12 +31,6 @@ void AdminPanel::runCommand(const MyString& command)
 
 	}
 	else if (cmd == "remove_user_from_group") {
-
-	}
-	else if (cmd == "add_group_to_folder") {
-
-	}
-	else if (cmd == "remove_group_from_folder") {
 
 	}
 	else {

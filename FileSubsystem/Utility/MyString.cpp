@@ -1,4 +1,5 @@
 #include "MyString.h"
+#include <sstream>
 #pragma warning(disable:4996)
 
 void MyString::free()
@@ -150,6 +151,20 @@ MyString MyString::substr(size_t begin, size_t end) const // end exclusive
 	MyString result;
 	for (int i = begin; i < end; i++) {
 		result += data[i];
+	}
+	return result;
+}
+
+Vector<MyString> MyString::splitStr()
+{
+	// split by " "
+	std::stringstream stream(data);
+	Vector<MyString> result;
+	MyString currentStr;
+	stream >> currentStr;
+	while (currentStr) {
+		result.pushBack(currentStr);
+		stream >> currentStr;
 	}
 	return result;
 }

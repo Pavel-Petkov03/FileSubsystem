@@ -56,18 +56,33 @@ void Directory::addFile(const User& user, BaseFile* file)
 void Directory::addGroup(const User& user, const MyString& groupName)
 {
 	if (groups.hasElement(groupName)) {
-		// todo throw error
+		std::cout << "Group name already in folder" << std::endl;
+		return;
 	}
 	if (!isAuthenticated(user)) {
-		//todo throw error
+		std::cout << "User not Authenticated to add file " << std::endl;
+		return;
 	}
 	groups.pushBack(groupName);
+}
+
+void Directory::removeGroup(const User& user, const MyString& groupName)
+{
+	for (int i = 0; i < groups.getSize(); i++) {
+		if (groups[i] == groupName) {
+			groups.removeAtIndex(i);
+			std::cout << "Successfully removed group with name " << groupName << std::endl;
+			return;
+		}
+	}
+	std::cout << "No group with such name" << std::endl;
 }
 
 void Directory::removeFile(const User& user, BaseFile* file)
 {
 	if (!isAuthenticated(user)) {
-		//todo throw error
+		std::cout << "Group name already in folder" << std::endl;
+		return;
 	}
 	for (int i = 0; i < children.getSize(); i++) {
 		if (file == children[i].get()) {

@@ -1,6 +1,6 @@
 #include "../headers/RegistrationAndLoginPanel.h"
-#include "../../Command/AdminCommands/headers/LoginCommand.h"
-#include "../../Command/AdminCommands/headers/RegisterCommand.h"
+#include "../../Command/AuthCommands/headers/LoginCommand.h"
+#include "../../Command/AuthCommands/headers/RegisterCommand.h"
 void LoginAndRegistrationPanel::printPrompth() const
 {
 

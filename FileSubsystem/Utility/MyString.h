@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-
+#include "Vector.hpp"
 class MyString {
 private:
 	char* data;
@@ -38,6 +38,8 @@ public:
 
 	void getLine(std::istream& is, char delim='\n');
 	MyString substr(size_t begin, size_t end) const;
+
+	Vector<MyString> splitStr();
 };
 
 unsigned nextPowerOfTwo(unsigned n);

@@ -4,6 +4,7 @@ bool BaseDirectoryCommand::isUserAuthenticated(const User* user) {
 	if (user) {
 		return user->hasRole(RoleTypes::Admin);
 	}
+	return false;
 }
 
 void BaseDirectoryCommand::execute(Directory*& file, User*& user, std::stringstream& context)

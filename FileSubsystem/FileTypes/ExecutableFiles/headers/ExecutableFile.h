@@ -14,4 +14,5 @@ public:
 	virtual ~ExecutableFile() = default;
 
 	friend class EchoCommand;
+	friend class RemoveFileCommand;
 };

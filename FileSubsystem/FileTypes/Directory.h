@@ -12,6 +12,7 @@ private:
 	bool isInGroup(const User& user);
 	void addFile(const User& user, BaseFile* file);
 	void addGroup(const User& user, const MyString& groupName);
+	void removeGroup(const User& user, const MyString& groupName);
 	void removeFile(const User& user, BaseFile* file);
 public:
 	BaseFile* getChildWithName(const MyString& str);
@@ -33,4 +34,7 @@ public:
 	friend class RemoveDirCommand;
 	friend class TouchCommand;
 	friend class MakeDirCommand;
+
+	friend class AddGroupToFolderCommand;
+	friend class RemoveGroupFromFolderCommand;
 };

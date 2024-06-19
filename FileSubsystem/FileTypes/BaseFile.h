@@ -33,4 +33,5 @@ public:
 	friend class LsCommand;
 	friend class FindCommand;
 	friend class TouchCommand;
+	friend class RemoveFileCommand;
 };

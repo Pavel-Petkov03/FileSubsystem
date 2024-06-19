@@ -75,13 +75,13 @@
     <ClCompile Include="CommandPanel\cpp\RegistrationAndLoginPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Command\AdminCommands\cpp\LoginCommand.cpp">
+    <ClCompile Include="Command\AuthCommands\cpp\LoginCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Command\AdminCommands\cpp\RegisterCommand.cpp">
+    <ClCompile Include="Command\AuthCommands\cpp\RegisterCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Command\AdminCommands\headers\RegisterCommand.h">
+    <ClCompile Include="Command\AuthCommands\headers\RegisterCommand.h">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Auth\headers\Admin.h">
@@ -112,6 +112,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Command\DirectoryCommands\CreateCommands\cpp\RemoveDirCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\DirectoryCommands\AdminCommands\FileRelated\cpp\AddGroupToFolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\DirectoryCommands\AdminCommands\FileRelated\cpp\RemoveGroupFromFolderCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -194,10 +200,10 @@
     <ClInclude Include="CommandPanel\headers\RegistrationAndLoginPanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\AdminCommands\headers\BaseAdminCommand.h">
+    <ClInclude Include="Command\AuthCommands\headers\BaseAdminCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\AdminCommands\headers\LoginCommand.h">
+    <ClInclude Include="Command\AuthCommands\headers\LoginCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Auth\headers\Editor.h">
@@ -219,6 +225,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command\DirectoryCommands\BaseDirectoryCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\AdminCommands\FileRelated\headers\AddGroupToFolderCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\AdminCommands\FileRelated\headers\RemoveGroupFromFolderCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
