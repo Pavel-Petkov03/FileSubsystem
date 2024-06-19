@@ -110,7 +110,7 @@ MyString& MyString::operator+=(const MyString& other)
 		resize(nextPowerOfTwo(length) - 1);
 	}
 	strcat(data, other.data);
-	return*this;
+	return *this;
 }
 
 MyString& MyString::operator+=(char symbol)
@@ -127,6 +127,8 @@ MyString::operator bool() const
 {
 	return length > 0;
 }
+
+
 
 void MyString::getLine(std::istream& is, char delim)
 {

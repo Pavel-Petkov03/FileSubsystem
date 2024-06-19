@@ -3,19 +3,17 @@
 #include "ExecutableFile.hpp"
 #include "../../Utility/MyString.h"
 class TxtFile : public ExecutableFile {
-private:
-	Vector<MyString> fileText;
 public:
-	void execute() const override;
+	void execute(User& user) override;
 	TxtFile(const MyString& name, BaseFile* parent);
 	ExecutableFile* clone() const;
 };
 
 
-void TxtFile::execute() const
+void TxtFile::execute(User& user)
 {
-	for (int i = 0; i < fileText.getSize(); i++) {
-		std::cout << fileText[i] << std::endl;
+	for (int i = 0; i < fileLines.getSize(); i++) {
+		std::cout << fileLines[i] << std::endl;
 	}
 }
 ExecutableFile* TxtFile::clone() const

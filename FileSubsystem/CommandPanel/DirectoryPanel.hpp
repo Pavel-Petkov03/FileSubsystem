@@ -5,11 +5,12 @@
 #include "../Command/DirectoryCommands/ViewCommands/PwdCommand.hpp"
 #include "../Command/DirectoryCommands/ViewCommands/CdCommand.hpp"
 #include "../Command/DirectoryCommands/ViewCommands/LsCommand.hpp"
+#include "../Command/DirectoryCommands/ViewCommands/EchoCommand.hpp"
 
-#include "../Command/DirectoryCommands/EditCommands/MakeDirCommand.hpp"
-#include "../Command/DirectoryCommands/EditCommands/RemoveDirCommand.hpp"
-#include "../Command/DirectoryCommands/EditCommands/RemoveFileCommand.hpp"
-#include "../Command/DirectoryCommands/EditCommands/TouchCommand.hpp"
+#include "../Command/DirectoryCommands/CreateCommands/MakeDirCommand.hpp"
+#include "../Command/DirectoryCommands/CreateCommands/RemoveDirCommand.hpp"
+#include "../Command/DirectoryCommands/CreateCommands/RemoveFileCommand.hpp"
+#include "../Command/DirectoryCommands/CreateCommands/TouchCommand.hpp"
 
 
 class DirectoryPanel : public BasePanel {
@@ -24,6 +25,7 @@ private:
 	Directory* currentDir;
 public:
 	DirectoryPanel(BasePanel* prev, User* user);
+	DirectoryPanel(Directory* currentDir, User* user);
 	void printHeaderPanelMessage() const override;
 	void runCommand(const MyString& command) override;
 	void printPrompth() const override;
@@ -31,25 +33,24 @@ public:
 
 void DirectoryPanel::printCreateCommands() const
 {
-	std::cout << "Create commands:" << std::endl;
+	std::cout << "Create/Delete commands:" << std::endl;
 	std::cout << "   mkdir <dirName>" << std::endl;
 	std::cout << "   touch <fileName>" << std::endl;
 	std::cout << "   rm <fileName>" << std::endl;
 	std::cout << "   rmdir <dirName>" << std::endl;
-	std::cout << "   exec <fileName>" << std::endl;
-	std::cout << "   echo <text>" << std::endl;
-	std::cout << "   echo <text> > <fileName>" << std::endl;
-	std::cout << "   echo <text> >> <fileName>" << std::endl;
 }
 
 void DirectoryPanel::printViewCommands() const
 {
-	std::cout << "View commands:" << std::endl;
+	std::cout << "View/Modify commands:" << std::endl;
 	std::cout << "   cd <path>" << std::endl;
 	std::cout << "   ls" << std::endl;
 	std::cout << "   ls <path>" << std::endl;
 	std::cout << "   pwd" << std::endl;
 	std::cout << "   find <startPath> <findStr> " << std::endl;
+	std::cout << "   echo <text>" << std::endl;
+	std::cout << "   echo <text> > <fileName>" << std::endl;
+	std::cout << "   echo <text> >> <fileName>" << std::endl;
 }
 
 void DirectoryPanel::printAdminCommands() const
@@ -101,6 +102,9 @@ void DirectoryPanel::runViewComamnds(std::stringstream& context)
 	else if (cmd == "find") {
 
 	}
+	else if (cmd == "echo") {
+		EchoCommand().execute(currentDir, user, context);
+	}
 	else {
 		throw InvalidCommandInPanel("Invalid command");
 	}
@@ -129,9 +133,15 @@ DirectoryPanel::DirectoryPanel(BasePanel* prev, User* user): BasePanel(prev, use
 	if (!ifs.is_open()) {
 		MyString rootName = "root";
 		currentDir = new Directory(rootName, nullptr);
+		return;
 	}
 	currentDir = new Directory();
 	ifs >> *currentDir;
+}
+
+DirectoryPanel::DirectoryPanel(Directory* currentDir, User* user) : BasePanel(nullptr, user)
+{
+	this->currentDir = currentDir;
 }
 
 void DirectoryPanel::printHeaderPanelMessage() const

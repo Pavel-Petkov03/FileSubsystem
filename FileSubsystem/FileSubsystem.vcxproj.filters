@@ -53,7 +53,7 @@
     <ClInclude Include="Auth\Editor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\DirectoryCommands\EditCommands\CreateCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\CreateCommands\CreateCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileTypes\Directory.hpp">
@@ -107,16 +107,16 @@
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\FindCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\DirectoryCommands\EditCommands\MakeDirCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\CreateCommands\MakeDirCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveDirCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\CreateCommands\RemoveDirCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\DirectoryCommands\EditCommands\RemoveFileCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\CreateCommands\RemoveFileCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command\DirectoryCommands\EditCommands\TouchCommand.hpp">
+    <ClInclude Include="Command\DirectoryCommands\CreateCommands\TouchCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileTypes\ExecutableFiles\ExeFile.hpp">
@@ -126,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\MyString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\EchoCommand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

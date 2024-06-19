@@ -2,17 +2,24 @@
 #include "ExecutableFile.hpp"
 #include "../../Utility/Vector.hpp"
 #include "../../Utility/MyString.h"
+#include "../../CommandPanel/DirectoryPanel.hpp"
 class ExeFile : public ExecutableFile {
-private:
-	Vector<MyString> commandLines;
 public:
-	void execute() const;
+	void execute(User& user);
 	ExecutableFile* clone() const;
 	ExeFile(const MyString& name, BaseFile* parent);
 };
 
-void ExeFile::execute() const {
-
+void ExeFile::execute(User& user) {
+	if (executed) {
+		// throw circular import error;
+	}
+	executed = true;
+	//DirectoryPanel panel((Directory*)parent, &user);
+	//for (int i = 0; i < fileLines.getSize(); i++) {
+	//	panel.runCommand(fileLines[i]);
+	//}
+	executed = false;
 }
 
 ExecutableFile* ExeFile::clone() const

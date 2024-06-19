@@ -7,7 +7,9 @@
 #include "../../../FileTypes/ExecutableFiles//LinkFile.hpp"
 class TouchCommand : public CreateCommand {
 private:
-	ExecutableFile* fileFactory(Directory*& file, const MyString& str);
+	static ExecutableFile* fileFactory(Directory*& file, const MyString& str);
+	static void addFile(Directory*& currentExecutable, User* user, std::stringstream& context);
+	static void modifyFile(ExecutableFile*& currentExecutable, User* user, std::stringstream& context);
 public:
 	void runTask(Directory*& file, User*& user, std::stringstream& context);
 };
@@ -29,14 +31,19 @@ ExecutableFile* TouchCommand::fileFactory(Directory*& file, const MyString& str)
 	}
 }
 
-void TouchCommand::runTask(Directory*& file, User*& user, std::stringstream& context) {
+void TouchCommand::addFile(Directory*& currentExecutable, User* user, std::stringstream& context)
+{
 	MyString filename;
 	context >> filename;
-	BaseFile* currentFile = file->getChildWithName(filename);
-	if (currentFile) {
-		currentFile->modificationDate = currentFile->getCurrentDateTime();
-		std::cout << "Change modification date for " << currentFile->name << std::endl;
-		return;
-	}
-	file->addFile((const User&)user, fileFactory(file, filename));
+	currentExecutable->addFile(*user, fileFactory(currentExecutable, filename));
+}
+
+void TouchCommand::modifyFile(ExecutableFile*& currentExecutable, User* user, std::stringstream& context)
+{
+	currentExecutable->setModificationDate();
+}
+
+void TouchCommand::runTask(Directory*& file, User*& user, std::stringstream& context) {
+	CdCommand cd;
+	cd.runTaskOnLoggedFile(file, user, context, modifyFile, addFile);
 }

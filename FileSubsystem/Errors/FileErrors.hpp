@@ -2,14 +2,17 @@
 #include <iostream>
 #include <stdexcept>
 
-class InvalidFileType : public std::runtime_error {
+class InvalidFileError : public std::runtime_error {
 public:
-    InvalidFileType(const std::string& message)
-        : std::runtime_error(message) {}
+    InvalidFileError(const char* message) : std::runtime_error(message) {}
 };
 
-class InvalidFileName : public std::runtime_error {
+class InvalidFileType : public InvalidFileError {
 public:
-    InvalidFileName(const std::string& message)
-        : std::runtime_error(message) {}
+    InvalidFileType(const char* message): InvalidFileError(message) {}
+};
+
+class InvalidFileName : public InvalidFileError {
+public:
+    InvalidFileName(const char* message): InvalidFileError(message) {}
 };

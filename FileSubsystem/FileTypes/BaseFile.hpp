@@ -15,6 +15,8 @@ protected:
 	BaseFile* parent;
 	MyString getCurrentDateTime() const;
 	MyString getPathRecurse(const BaseFile* current) const;
+
+	void setModificationDate();
 public:
 	virtual ~BaseFile() = default;
 	virtual BaseFile* clone() const = 0;
@@ -51,6 +53,12 @@ MyString BaseFile::getPathRecurse(const BaseFile* current) const
 	result += "/";
 	result += current->name;
 	return result;
+}
+
+void BaseFile::setModificationDate()
+{
+	this->modificationDate = getCurrentDateTime();
+	std::cout << "Change modification date for " << name << std::endl;
 }
 
 BaseFile::BaseFile(const MyString& name, BaseFile* parent)

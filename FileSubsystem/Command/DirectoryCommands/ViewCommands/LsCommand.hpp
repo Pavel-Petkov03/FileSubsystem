@@ -8,16 +8,12 @@ public:
 
 
 void LsCommand::runTask(Directory*& file, User*& user, std::stringstream& context) {
-	try {
-		CdCommand cd;
-		Directory* currentDir = file;
-		cd.logToDirectory(currentDir, user, context);
+	CdCommand cd;
+	cd.runTaskOnLoggedDirectory(file, user, context, [](Directory*& currentDir, User* user, std::stringstream& context) {
 		for (int i = 0; i < currentDir->children.getSize(); i++) {
 			BaseFile* cur = currentDir->children[i].get();
 			std::cout << cur->modificationDate << " " << cur->name << std::endl;
 		}
-	}
-	catch (...) {
-		//todo handle
-	}
+	});
+
 }
