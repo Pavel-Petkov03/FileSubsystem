@@ -2,6 +2,7 @@
 
 #include "../../BaseFile.h"
 #include "../../../Auth/headers/User.h"
+#include "../../../Errors/FileErrors.hpp"
 class ExecutableFile : public BaseFile {
 protected:
 	Vector<MyString> fileLines;

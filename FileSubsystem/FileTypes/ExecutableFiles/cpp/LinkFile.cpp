@@ -12,16 +12,22 @@ ExecutableFile* LinkFile::clone() const
 void LinkFile::execute(User* user)
 {
 	if (executed) {
-		// throw circular import error;
+		throw CircularFileError("Circle file reference");
 	}
 	executed = true;
 	for (int i = 0; i < fileLines.getSize(); i++) {
 		std::stringstream currentStream;
 		currentStream << " " << fileLines[i];
-		cd.runTaskOnLoggedFile((Directory*&)parent, user, currentStream, [](ExecutableFile*& otherFile, User* user, std::stringstream& context) {
-			otherFile->execute(user);
-			},
-			nullptr);
+		try {
+			cd.runTaskOnLoggedFile((Directory*&)parent, user, currentStream, [](ExecutableFile*& otherFile, User* user, std::stringstream& context) {
+				otherFile->execute(user);
+				},
+				nullptr);
+		}
+		catch (CircularFileError& error) {
+			executed = false;
+			throw error;
+		}
 	}
 	executed = false;
 }

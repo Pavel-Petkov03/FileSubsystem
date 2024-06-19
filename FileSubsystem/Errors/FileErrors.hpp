@@ -16,3 +16,9 @@ class InvalidFileName : public InvalidFileError {
 public:
     InvalidFileName(const char* message): InvalidFileError(message) {}
 };
+
+
+class CircularFileError : public std::runtime_error {
+public:
+    CircularFileError(const char* message) : std::runtime_error(message) {}
+};

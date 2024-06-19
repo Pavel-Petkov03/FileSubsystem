@@ -1,10 +1,20 @@
 #include "../headers/ExeFile.h"
-
+#include "../../../CommandPanel/headers/DirectoryPanel.h"
 void ExeFile::execute(User* user) {
 	if (executed) {
-		// throw circular import error;
+		throw CircularFileError("Circle file reference");
 	}
 	executed = true;
+	DirectoryPanel panel((Directory*)this->parent, user);
+	for (int i = 0; i < fileLines.getSize(); i++) {
+		try {
+			panel.runCommand(fileLines[i]);
+		}
+		catch (CircularFileError& err) {
+			executed = false;
+			throw err;
+		}
+	}
 	executed = false;
 }
 
