@@ -1,8 +1,9 @@
 #include <iostream>
 #include <chrono>
-#include "CommandPanel/RegistrationAndLoginPanel.hpp"
-#include "CommandPanel/AdminPanel.hpp"
-#include "CommandPanel/DirectoryPanel.hpp"
+#include "CommandPanel/headers/RegistrationAndLoginPanel.h"
+#include "CommandPanel//headers/AdminPanel.h"
+#include "CommandPanel/headers/DirectoryPanel.h"
+#include "Errors/Auth/CommandAuthorisationError.hpp"
 class Runner {
 private:
 	Polymorphic_Ptr<BasePanel> currentPanel;
