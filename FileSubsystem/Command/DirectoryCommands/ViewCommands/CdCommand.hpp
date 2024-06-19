@@ -22,6 +22,8 @@ public:
 	friend class RemoveDirCommand;
 	friend class EchoCommand;
 	friend class TouchCommand;
+	friend class ExecuteCommand;
+	friend class LinkFile;
 };
 
 void CdCommand::logToDirectory(Directory*& file, User*& user, std::stringstream& context)

@@ -44,6 +44,7 @@
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\CdCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\FindCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\EchoCommand.hpp" />
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\ExecuteCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\LsCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\PwdCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\ViewCommand.hpp" />

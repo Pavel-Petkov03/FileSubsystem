@@ -6,6 +6,7 @@
 #include "../Command/DirectoryCommands/ViewCommands/CdCommand.hpp"
 #include "../Command/DirectoryCommands/ViewCommands/LsCommand.hpp"
 #include "../Command/DirectoryCommands/ViewCommands/EchoCommand.hpp"
+#include "../Command/DirectoryCommands/ViewCommands/ExecuteCommand.hpp"
 
 #include "../Command/DirectoryCommands/CreateCommands/MakeDirCommand.hpp"
 #include "../Command/DirectoryCommands/CreateCommands/RemoveDirCommand.hpp"
@@ -49,8 +50,9 @@ void DirectoryPanel::printViewCommands() const
 	std::cout << "   pwd" << std::endl;
 	std::cout << "   find <startPath> <findStr> " << std::endl;
 	std::cout << "   echo <text>" << std::endl;
-	std::cout << "   echo <text> > <fileName>" << std::endl;
-	std::cout << "   echo <text> >> <fileName>" << std::endl;
+	std::cout << "   echo <text> > <path>" << std::endl;
+	std::cout << "   echo <text> >> <path>" << std::endl;
+	std::cout << "   exec <path>" << std::endl;
 }
 
 void DirectoryPanel::printAdminCommands() const
@@ -99,8 +101,8 @@ void DirectoryPanel::runViewComamnds(std::stringstream& context)
 	else if (cmd == "pwd") {
 		PwdCommand().execute(currentDir, user, context);
 	}
-	else if (cmd == "find") {
-
+	else if (cmd == "exec") {
+		ExecuteCommand().execute(currentDir, user, context);
 	}
 	else if (cmd == "echo") {
 		EchoCommand().execute(currentDir, user, context);
