@@ -167,6 +167,23 @@ MyString MyString::substr(size_t begin, size_t end) const // end exclusive
 	return result;
 }
 
+bool MyString::isSubstr(const MyString& subString)
+{
+	if (subString.length > length) {
+		return false;
+	}
+	if (subString.length == length && subString == *this) {
+		return true;
+	}
+	for (int i = 0; i < length - subString.length; i++) {
+		MyString current = substr(i , i+subString.length);
+		if (current == subString) {
+			return true;
+		}
+	}
+	return false;
+}
+
 Vector<MyString> MyString::splitStr()
 {
 	// split by " "

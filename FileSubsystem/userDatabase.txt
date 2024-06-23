@@ -1,3 +1,5 @@
-pavel petkob 2pavel petkob 2
-a b 0
-gosho 2 2
+desi 1234 2
+ivan 1234 1 
+pavel 1234 0
+a b 2
+

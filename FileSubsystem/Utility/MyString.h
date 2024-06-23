@@ -40,7 +40,7 @@ public:
 	void getline(std::istream & is);
 	
 	MyString substr(size_t begin, size_t end) const;
-
+	bool isSubstr(const MyString& substr);
 	Vector<MyString> splitStr();
 };
 

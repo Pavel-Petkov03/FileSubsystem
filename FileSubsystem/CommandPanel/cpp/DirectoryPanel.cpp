@@ -10,6 +10,7 @@
 #include "../../Command/DirectoryCommands/ViewCommands/headers/PwdCommand.h"
 #include "../../Command/DirectoryCommands/ViewCommands/headers/ExecuteCommand.h"
 #include "../../Command/DirectoryCommands/ViewCommands/headers/EchoCommand.h"
+#include "../../Command/DirectoryCommands/ViewCommands/headers/FindCommand.h"
 
 #include "../../Command/DirectoryCommands/AdminCommands/FileRelated/headers/AddGroupToFolderCommand.h"
 #include "../../Command/DirectoryCommands/AdminCommands/FileRelated/headers/RemoveGroupFromFolderCommand.h"
@@ -86,6 +87,9 @@ void DirectoryPanel::runViewComamnds(std::stringstream& context)
 	}
 	else if (cmd == "echo") {
 		EchoCommand().execute(currentDir, user, context);
+	}
+	else if (cmd == "find") {
+		FindCommand().execute(currentDir, user, context);
 	}
 	else {
 		throw InvalidCommandInPanel("Invalid command");

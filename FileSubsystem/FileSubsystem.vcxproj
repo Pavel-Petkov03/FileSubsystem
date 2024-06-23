@@ -44,6 +44,7 @@
     <ClCompile Include="Command\DirectoryCommands\ViewCommands\cpp\CdCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\ViewCommands\cpp\EchoCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\ViewCommands\cpp\ExecuteCommand.cpp" />
+    <ClCompile Include="Command\DirectoryCommands\ViewCommands\cpp\FindCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\ViewCommands\cpp\LsCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\ViewCommands\cpp\PwdCommand.cpp" />
     <ClCompile Include="Command\DirectoryCommands\ViewCommands\cpp\ViewCommand.cpp" />
@@ -55,6 +56,7 @@
     <ClCompile Include="FileTypes\ExecutableFiles\cpp\TxtFile.cpp" />
     <ClCompile Include="FileTypes\fileFactory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Runner.cpp" />
     <ClCompile Include="Utility\MyString.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -77,10 +79,10 @@
     <ClInclude Include="Command\DirectoryCommands\CreateCommands\headers\MakeDirCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\CreateCommands\headers\RemoveFileCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\CreateCommands\headers\TouchCommand.h" />
-    <ClInclude Include="Command\DirectoryCommands\ViewCommands\FindCommand.hpp" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\headers\CdCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\headers\EchoCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\headers\ExecuteCommand.h" />
+    <ClInclude Include="Command\DirectoryCommands\ViewCommands\headers\FindCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\headers\LsCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\headers\PwdCommand.h" />
     <ClInclude Include="Command\DirectoryCommands\ViewCommands\headers\ViewCommand.h" />
@@ -94,6 +96,7 @@
     <ClInclude Include="FileTypes\ExecutableFiles\headers\LinkFile.h" />
     <ClInclude Include="FileTypes\ExecutableFiles\headers\TxtFile.h" />
     <ClInclude Include="FileTypes\fileFactory.h" />
+    <ClInclude Include="Runner.h" />
     <ClInclude Include="Utility\MyString.h" />
     <ClInclude Include="Utility\Vector.hpp" />
     <ClInclude Include="Utility\PolymorphicPtr.hpp" />
