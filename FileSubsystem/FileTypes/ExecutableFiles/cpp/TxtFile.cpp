@@ -6,6 +6,10 @@ void TxtFile::execute(User* user)
 		std::cout << fileLines[i] << std::endl;
 	}
 }
+FileTypes TxtFile::getType() const
+{
+	return FileTypes::TxtType;
+}
 ExecutableFile* TxtFile::clone() const
 {
 	return new TxtFile(*this);

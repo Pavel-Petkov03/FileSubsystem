@@ -11,4 +11,5 @@ public:
 	void runCommand(const MyString& command) override;
 	void printHeaderPanelMessage() const override;
 	void printCommandLocation() const override;
+	BasePanel* clone() const override;
 };

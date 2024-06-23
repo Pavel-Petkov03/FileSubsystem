@@ -56,7 +56,7 @@ void CdCommand::runTaskOnLoggedDirectory(Directory*& file, User*& user, std::str
 			func(copy, user, context);
 		}
 	}
-	catch (InvalidFileError& err) {
+	catch (const InvalidFileError& err) {
 		std::cout << err.what() << std::endl;
 	}
 }
@@ -73,7 +73,7 @@ void CdCommand::runTaskOnLoggedFile(Directory*& file, User*& user, std::stringst
 		context.seekg(std::ios::beg);
 		logToDirectory(copy, user, fileStream); // returs the stream to beg
 	}
-	catch (InvalidFileError& err) {
+	catch (const InvalidFileError& err) {
 		MyString currentFileName;
 		fileStream >> currentFileName;
 		rebuildStream(context, currentFileName);
@@ -86,7 +86,7 @@ void CdCommand::runTaskOnLoggedFile(Directory*& file, User*& user, std::stringst
 			onCreate(copy, user, context);
 		}
 		else {
-			std::cout << "No such file with name" << currentFileName << std::endl;
+			std::cout << "No such file with name " << currentFileName << std::endl;
 		}
 	}
 }

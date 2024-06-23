@@ -48,6 +48,9 @@ public:
 
     template <typename U>
     friend std::ostream& operator<<(std::ostream&, const Vector<U>& vector);
+
+    template <typename U>
+    friend std::istream& operator>>(std::istream&, Vector<U>& vector);
 };
 
 template <typename F>
@@ -316,4 +319,15 @@ std::ostream& operator<<(std::ostream& ofs, const Vector<U>& vector) {
         ofs << vector[i];
     }
     return ofs;
+}
+template <typename U>
+std::istream& operator>>(std::istream& ifs, Vector<U>& vector) {
+    int size;
+    ifs >> size;
+    for (int i = 0; i < size; i++) {
+        U currentEntry;
+        ifs >> currentEntry;
+        vector.pushBack(currentEntry);
+    }
+    return ifs;
 }

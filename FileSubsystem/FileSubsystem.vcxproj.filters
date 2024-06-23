@@ -87,9 +87,6 @@
     <ClCompile Include="Auth\headers\Admin.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Auth\cpp\Admin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Auth\cpp\Editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -118,6 +115,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Command\DirectoryCommands\AdminCommands\FileRelated\cpp\RemoveGroupFromFolderCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Auth\cpp\Admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Auth\cpp\roleFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileTypes\fileFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -231,6 +237,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command\DirectoryCommands\AdminCommands\FileRelated\headers\RemoveGroupFromFolderCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Auth\headers\roleFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileTypes\fileFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,5 +10,7 @@ private:
 public:
 	void execute(User* user) override;
 	ExecutableFile* clone() const;
+	FileTypes getType() const override;
+	ExeFile() = default;
 	ExeFile(const MyString& name, BaseFile* parent);
 };

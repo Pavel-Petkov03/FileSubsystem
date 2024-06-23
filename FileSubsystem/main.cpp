@@ -4,15 +4,24 @@
 #include "CommandPanel//headers/AdminPanel.h"
 #include "CommandPanel/headers/DirectoryPanel.h"
 #include "Errors/Auth/CommandAuthorisationError.hpp"
+#include <fstream>
 class Runner {
 private:
-	Polymorphic_Ptr<BasePanel> currentPanel;
-
+	BasePanel* currentPanel;
+	Directory* currentDir;
+	static void clearConsole();
 	void chooseAdminPanel();
+	void save(); 
+	void load();
 public:
 	Runner();
 	void run();
 };
+void Runner::clearConsole()
+{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cin.clear();
+}
 void Runner::chooseAdminPanel()
 {
 	std::cout << "Welcome to admin panel" << std::endl;
@@ -23,21 +32,39 @@ void Runner::chooseAdminPanel()
 	while (true) {
 		std::cin >> n;
 		if (n == 1) {
-			currentPanel = new DirectoryPanel(currentPanel.get(), currentPanel->getUser());
+			currentPanel = new DirectoryPanel(currentPanel, currentDir, currentPanel->getUser());
 			return;
 		}
 		else if (n == 2) {
-			currentPanel = new AdminPanel(currentPanel.get(), currentPanel->getUser());
+			currentPanel = new AdminPanel(currentPanel, currentPanel->getUser());
 			return;
 		}
 		std::cout << "Invalid command" << std::endl;
 		std::cin >> n;
 	}
-	
+}
+void Runner::save()
+{
+	std::ofstream ofs("directory.txt");
+	currentDir->serialise(ofs);
+}
+void Runner::load()
+{
+	std::ifstream ifs("directory.txt");
+
+	if (!ifs.is_open()) {
+		MyString rootName = "root";
+		currentDir = new Directory(rootName, nullptr);
+		return;
+	}
+	currentDir = new Directory();
+	ifs >> *currentDir;
+	currentDir->buildTree();
 }
 Runner::Runner()
 {
 	currentPanel = new LoginAndRegistrationPanel(nullptr, nullptr);
+	load();
 }
 
 void Runner::run()
@@ -50,11 +77,19 @@ void Runner::run()
 			User* user = currentPanel->getUser();
 			if (user->hasRole(RoleTypes::Admin)) {
 				chooseAdminPanel();
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				std::cin.clear();
+				clearConsole();
 				continue;
 			}
-			currentPanel = new DirectoryPanel(currentPanel.get(), user);
+			currentPanel = new DirectoryPanel(currentPanel, currentDir, user);
+		}
+		catch (const EscapePanelError& err) {
+			BasePanel* current = currentPanel->getPreviousPanel();
+			delete currentPanel;
+			if (!current) {
+				save();
+				return;
+			}
+			currentPanel = current;
 		}
 	}
 }

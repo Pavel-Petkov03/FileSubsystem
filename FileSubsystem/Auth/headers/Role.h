@@ -2,9 +2,9 @@
 #include <ostream>
 
 enum class RoleTypes {
-	Admin,
-	Editor,
-	Viewer,
+	Admin=0,
+	Editor=1,
+	Viewer=2,
 };
 class BaseRole {
 public:

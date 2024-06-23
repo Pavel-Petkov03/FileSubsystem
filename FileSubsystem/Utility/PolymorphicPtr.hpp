@@ -1,22 +1,22 @@
 #pragma once
 #include <iostream>
 
-template <class T>
+template <class T, T* (*factory)(int number)>
 class Polymorphic_Ptr {
 	T* data = nullptr;
 
-	void copyFrom(const Polymorphic_Ptr<T>& other);
-	void moveFrom(Polymorphic_Ptr<T>&& other);
+	void copyFrom(const Polymorphic_Ptr<T, factory>& other);
+	void moveFrom(Polymorphic_Ptr<T, factory>&& other);
 	void free();
 
 public:
 	Polymorphic_Ptr() = default;
 	Polymorphic_Ptr(T* data);
-	Polymorphic_Ptr(const Polymorphic_Ptr<T>& other);
-	Polymorphic_Ptr(Polymorphic_Ptr<T>&& other) noexcept;
+	Polymorphic_Ptr(const Polymorphic_Ptr<T, factory>& other);
+	Polymorphic_Ptr(Polymorphic_Ptr<T, factory>&& other) noexcept;
 
-	Polymorphic_Ptr<T>& operator=(const Polymorphic_Ptr<T>& other);
-	Polymorphic_Ptr<T>& operator=(Polymorphic_Ptr<T>&& other) noexcept;
+	Polymorphic_Ptr<T, factory>& operator=(const Polymorphic_Ptr<T, factory>& other);
+	Polymorphic_Ptr<T, factory>& operator=(Polymorphic_Ptr<T, factory>&& other) noexcept;
 
 	~Polymorphic_Ptr();
 
@@ -31,51 +31,49 @@ public:
 	T* get();
 	const T* get() const;
 
-	template <class U>
-	friend std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<U>& ptr);
+	template <class T, T* (*factory)(int number)>
+	friend std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<T, factory>& ptr);
 
+	template <class T, T* (*factory)(int number)>
+	friend std::istream& operator>>(std::istream& ifs, Polymorphic_Ptr<T, factory>& ptr);
 };
-
-
-template<class T>
-void Polymorphic_Ptr<T>::copyFrom(const Polymorphic_Ptr<T>& other)
+template <class T, T* (*factory)(int number)>
+void Polymorphic_Ptr<T, factory>::copyFrom(const Polymorphic_Ptr<T, factory>& other)
 {
 	data = other.data->clone();
 }
 
-template<class T>
-void Polymorphic_Ptr<T>::moveFrom(Polymorphic_Ptr<T>&& other)
+template <class T, T* (*factory)(int number)>
+void Polymorphic_Ptr<T, factory>::moveFrom(Polymorphic_Ptr<T, factory>&& other)
 {
 	data = other.data;
 	other.data = nullptr;
 }
 
-template<class T>
-void Polymorphic_Ptr<T>::free()
+template <class T, T* (*factory)(int number)>
+void Polymorphic_Ptr<T, factory>::free()
 {
 	delete data;
 }
-
-template<class T>
-Polymorphic_Ptr<T>::Polymorphic_Ptr(T* data) : data(data)
+template <class T, T* (*factory)(int number)>
+Polymorphic_Ptr<T, factory>::Polymorphic_Ptr(T* data) : data(data)
 {
 
 }
-
-template<class T>
- Polymorphic_Ptr<T>::Polymorphic_Ptr(const Polymorphic_Ptr<T>& other)
+template <class T, T* (*factory)(int number)>
+ Polymorphic_Ptr<T, factory>::Polymorphic_Ptr(const Polymorphic_Ptr<T, factory>& other)
 {
 	copyFrom(other);
 }
 
-template<class T>
-Polymorphic_Ptr<T>::Polymorphic_Ptr(Polymorphic_Ptr<T>&& other) noexcept
+ template <class T, T* (*factory)(int number)>
+Polymorphic_Ptr<T, factory>::Polymorphic_Ptr(Polymorphic_Ptr<T, factory>&& other) noexcept
 {
 	moveFrom(std::move(other));
 }
 
-template<class T>
-Polymorphic_Ptr<T>& Polymorphic_Ptr<T>::operator=(const Polymorphic_Ptr<T>& other)
+template <class T, T* (*factory)(int number)>
+Polymorphic_Ptr<T, factory>& Polymorphic_Ptr<T, factory>::operator=(const Polymorphic_Ptr<T, factory>& other)
 {
 	if (this != &other) {
 		free();
@@ -84,8 +82,8 @@ Polymorphic_Ptr<T>& Polymorphic_Ptr<T>::operator=(const Polymorphic_Ptr<T>& othe
 	return *this;
 }
 
-template<class T>
-Polymorphic_Ptr<T>& Polymorphic_Ptr<T>::operator=(Polymorphic_Ptr<T>&& other) noexcept
+template <class T, T* (*factory)( int number)>
+Polymorphic_Ptr<T, factory>& Polymorphic_Ptr<T, factory>::operator=(Polymorphic_Ptr<T, factory>&& other) noexcept
 {
 	if (this != &other) {
 		free();
@@ -94,26 +92,26 @@ Polymorphic_Ptr<T>& Polymorphic_Ptr<T>::operator=(Polymorphic_Ptr<T>&& other) no
 	return *this;
 }
 
-template<class T>
-Polymorphic_Ptr<T>::~Polymorphic_Ptr()
+template <class T, T* (*factory)(int number)>
+Polymorphic_Ptr<T, factory>::~Polymorphic_Ptr()
 {
 	free();
 }
 
-template<class T>
-T* Polymorphic_Ptr<T>::operator->()
+template <class T, T* (*factory)(int number)>
+T* Polymorphic_Ptr<T, factory>::operator->()
 {
 	return data;
 }
 
-template<class T>
-const T* Polymorphic_Ptr<T>::operator->() const
+template <class T, T* (*factory)( int number)>
+const T* Polymorphic_Ptr<T, factory>::operator->() const
 {
 	return data;
 }
 
-template<class T>
-T& Polymorphic_Ptr<T>::operator*()
+template <class T, T* (*factory)( int number)>
+T& Polymorphic_Ptr<T, factory>::operator*()
 {
 	if (data == nullptr) {
 		throw std::runtime_error("ptr is nullptr");
@@ -121,8 +119,8 @@ T& Polymorphic_Ptr<T>::operator*()
 	return *data;
 }
 
-template<class T>
-const T& Polymorphic_Ptr<T>::operator*() const
+template <class T, T* (*factory)( int number)>
+const T& Polymorphic_Ptr<T, factory>::operator*() const
 {
 	if (data == nullptr) {
 		throw std::runtime_error("ptr is nullptr");
@@ -130,9 +128,8 @@ const T& Polymorphic_Ptr<T>::operator*() const
 	return *data;
 }
 
-
-template<class T>
-void Polymorphic_Ptr<T>::reset(T* data)
+template <class T, T* (*factory)( int number)>
+void Polymorphic_Ptr<T, factory>::reset(T* data)
 {
 	if (this->data != data) {
 		free();
@@ -140,26 +137,36 @@ void Polymorphic_Ptr<T>::reset(T* data)
 	}
 }
 
-template<class T>
-T* Polymorphic_Ptr<T>::get()
+template <class T, T* (*factory)( int number)>
+T* Polymorphic_Ptr<T, factory>::get()
 {
 	return data;
 }
 
-template<class T>
-const T* Polymorphic_Ptr<T>::get() const
+template <class T, T* (*factory)( int number)>
+const T* Polymorphic_Ptr<T, factory>::get() const
 {
 	return data;
 }
 
 
-template<class U>
-std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<U>& ptr)
+template <class T, T* (*factory)( int number)>
+std::ostream& operator<<(std::ostream& ofs, const Polymorphic_Ptr<T, factory>& ptr)
 {
 	if (ptr.get()) {
-		ofs << *ptr;
+		ptr->serialise(ofs);
 	}
 	return ofs;
+}
+template <class T, T* (*factory)( int number)>
+std::istream& operator>>(std::istream& ifs, Polymorphic_Ptr<T, factory>& ptr)
+{
+	int number;
+	ifs >> number;
+	ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	ptr = factory(number);
+	ptr->deserialise(ifs);
+	return ifs;
 }
 
 

@@ -7,6 +7,8 @@ private:
 	CdCommand cd;
 public:
 	LinkFile(const MyString& name, BaseFile* parent);
+	LinkFile() = default;
 	ExecutableFile* clone() const;
+	FileTypes getType() const override;
 	void execute(User* user) override;
 };

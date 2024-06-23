@@ -36,7 +36,9 @@ public:
 	friend std::istream& operator>>(std::istream& is, MyString& str);
 	operator bool() const;
 
-	void getLine(std::istream& is, char delim='\n');
+	void readConsoleLine(char delim='\n');
+	void getline(std::istream & is);
+	
 	MyString substr(size_t begin, size_t end) const;
 
 	Vector<MyString> splitStr();

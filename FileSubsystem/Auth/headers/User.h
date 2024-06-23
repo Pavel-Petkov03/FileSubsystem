@@ -7,9 +7,10 @@
 #include "Editor.h"
 #include "Admin.h"
 #include "../../Utility/MyString.h"
+#include "roleFactory.h"
 class User {
 private:
-	Polymorphic_Ptr<BaseRole> role;
+	Polymorphic_Ptr<BaseRole, roleFactory> role;
 	Vector<MyString> groupsIn;
 public:
 	bool hasRole(const RoleTypes& type) const;

@@ -23,6 +23,11 @@ ExecutableFile* ExeFile::clone() const
 	return new ExeFile(*this);
 }
 
+FileTypes ExeFile::getType() const
+{
+	return FileTypes::ExeType;
+}
+
 ExeFile::ExeFile(const MyString& name, BaseFile* parent) : ExecutableFile(name, parent) {
 
 }

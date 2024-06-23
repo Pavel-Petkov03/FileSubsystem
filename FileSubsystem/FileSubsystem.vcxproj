@@ -22,6 +22,7 @@
     <ClCompile Include="Auth\cpp\Admin.cpp" />
     <ClCompile Include="Auth\cpp\Editor.cpp" />
     <ClCompile Include="Auth\cpp\Role.cpp" />
+    <ClCompile Include="Auth\cpp\roleFactory.cpp" />
     <ClCompile Include="Auth\cpp\User.cpp" />
     <ClCompile Include="Auth\cpp\Viewer.cpp" />
     <ClCompile Include="Auth\headers\Admin.h" />
@@ -52,12 +53,14 @@
     <ClCompile Include="FileTypes\ExecutableFiles\cpp\ExeFile.cpp" />
     <ClCompile Include="FileTypes\ExecutableFiles\cpp\LinkFile.cpp" />
     <ClCompile Include="FileTypes\ExecutableFiles\cpp\TxtFile.cpp" />
+    <ClCompile Include="FileTypes\fileFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Utility\MyString.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth\headers\Editor.h" />
     <ClInclude Include="Auth\headers\Role.h" />
+    <ClInclude Include="Auth\headers\roleFactory.h" />
     <ClInclude Include="Auth\headers\User.h" />
     <ClInclude Include="Auth\headers\Viewer.h" />
     <ClInclude Include="CommandPanel\headers\AdminPanel.h" />
@@ -90,6 +93,7 @@
     <ClInclude Include="FileTypes\ExecutableFiles\headers\ExeFile.h" />
     <ClInclude Include="FileTypes\ExecutableFiles\headers\LinkFile.h" />
     <ClInclude Include="FileTypes\ExecutableFiles\headers\TxtFile.h" />
+    <ClInclude Include="FileTypes\fileFactory.h" />
     <ClInclude Include="Utility\MyString.h" />
     <ClInclude Include="Utility\Vector.hpp" />
     <ClInclude Include="Utility\PolymorphicPtr.hpp" />

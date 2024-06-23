@@ -4,14 +4,14 @@ void BasePanel::run() {
 	printHeaderPanelMessage();
 	MyString command;
 	printCommandLocation();
-	command.getLine(std::cin);
+	command.readConsoleLine();
 	while (true) {
 		try {
 			if (command == "--options") {
 				printPrompth();
 			}
 			else if (command == "end") {
-				break;
+				throw EscapePanelError("Escape panel"); 
 			}
 			else {
 				runCommand(command);
@@ -22,7 +22,7 @@ void BasePanel::run() {
 			std::cout << "Type --options to list all valid commands" << std::endl;
 		}
 		printCommandLocation();
-		command.getLine(std::cin);
+		command.readConsoleLine();
 	}
 }
 
@@ -33,4 +33,9 @@ BasePanel::BasePanel(BasePanel* prev, User* user) : previousPanel(prev), user(us
 User* BasePanel::getUser() const
 {
 	return user;
+}
+
+BasePanel* BasePanel::getPreviousPanel()
+{
+	return previousPanel;
 }

@@ -47,3 +47,8 @@ void AdminPanel::printCommandLocation() const
 {
 	std::cout << "admin# ";
 }
+
+BasePanel* AdminPanel::clone() const
+{
+	return new AdminPanel(*this);
+}

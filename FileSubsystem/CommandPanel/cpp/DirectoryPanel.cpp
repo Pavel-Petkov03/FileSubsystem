@@ -114,19 +114,12 @@ void DirectoryPanel::printCommandLocation() const
 }
 
 
-DirectoryPanel::DirectoryPanel(BasePanel* prev, User* user) : BasePanel(prev, user) {
-	std::ifstream ifs("directory.txt");
-
-	if (!ifs.is_open()) {
-		MyString rootName = "root";
-		currentDir = new Directory(rootName, nullptr);
-		return;
-	}
-	currentDir = new Directory();
-	ifs >> *currentDir;
+DirectoryPanel::DirectoryPanel(Directory* currentDir, User* user) : BasePanel(nullptr, user)
+{
+	this->currentDir = currentDir;
 }
 
-DirectoryPanel::DirectoryPanel(Directory* currentDir, User* user) : BasePanel(nullptr, user)
+DirectoryPanel::DirectoryPanel(BasePanel* prev, Directory* currentDir, User* user) : BasePanel(prev, user)
 {
 	this->currentDir = currentDir;
 }
@@ -159,4 +152,9 @@ void DirectoryPanel::printPrompth() const
 		printCreateCommands();
 	}
 	printViewCommands();
+}
+
+BasePanel* DirectoryPanel::clone() const
+{
+	return new DirectoryPanel(*this);
 }

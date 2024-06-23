@@ -10,4 +10,6 @@ public:
 	void printPrompth() const override;
 	void printCommandLocation() const override;
 	LoginAndRegistrationPanel(BasePanel* prev, User* user);
+
+	BasePanel* clone() const override;
 };

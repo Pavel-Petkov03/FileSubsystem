@@ -4,6 +4,7 @@ void LoginCommand::initUser(User*& user, std::stringstream& userContext)
 	int roleType;
 	userContext >> roleType;
 
+	delete user;
 	user = new User(getRoleType(roleType));
 	while (true) {
 		MyString groupName;
@@ -17,10 +18,6 @@ void LoginCommand::initUser(User*& user, std::stringstream& userContext)
 
 void LoginCommand::login(std::ifstream& ifs, User*& user, std::stringstream& context)
 {
-	if (user) {
-		throw std::exception("User already logged in");
-	}
-
 	MyString username;
 	MyString password;
 	context >> username >> password;

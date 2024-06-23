@@ -14,9 +14,12 @@ private:
 	void printCommandLocation() const override;
 	Directory* currentDir;
 public:
-	DirectoryPanel(BasePanel* prev, User* user);
 	DirectoryPanel(Directory* currentDir, User* user);
+	DirectoryPanel(BasePanel* prev, Directory* currentDir, User* user);
+	DirectoryPanel() = default;
 	void printHeaderPanelMessage() const override;
 	void runCommand(const MyString& command) override;
 	void printPrompth() const override;
+
+	BasePanel* clone() const override;
 };

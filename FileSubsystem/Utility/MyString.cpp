@@ -131,10 +131,22 @@ MyString::operator bool() const
 
 
 
-void MyString::getLine(std::istream& is, char delim)
+void MyString::readConsoleLine(char delim)
 {
 	char buffer[1024];
 	std::cin.getline(buffer, 1024, delim);
+	int currentLen = strlen(buffer);
+	if (currentLen > allocatedData) {
+		resize(nextPowerOfTwo(currentLen) - 1);
+	}
+	strcpy(data, buffer);
+	length = currentLen;
+}
+
+void MyString::getline(std::istream& is)
+{
+	char buffer[1024];
+	is.getline(buffer, 1024);
 	int currentLen = strlen(buffer);
 	if (currentLen > allocatedData) {
 		resize(nextPowerOfTwo(currentLen) - 1);
@@ -166,7 +178,7 @@ Vector<MyString> MyString::splitStr()
 		result.pushBack(currentStr);
 		stream >> currentStr;
 	}
-	return result;
+	return result; 
 }
 
 std::ostream& operator<<(std::ostream& os, const MyString& str) {
@@ -178,8 +190,8 @@ std::istream& operator>>(std::istream& is, MyString& str) {
 	char buffer[1024];
 	is >> buffer;
 	size_t bufferLen = strlen(buffer);
-	if (bufferLen > str.getCapacity()) {
-		str.resize(nextPowerOfTwo(bufferLen) - 1);
+	if (bufferLen >= str.getCapacity()) {
+		str.resize(nextPowerOfTwo(bufferLen+1) - 1);
 	}
 	strcpy(str.data, buffer);
 	str.length = bufferLen;

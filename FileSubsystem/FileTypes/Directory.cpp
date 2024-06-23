@@ -25,7 +25,7 @@ Directory::Directory(const MyString& name, BaseFile* parent) : BaseFile(name, pa
 
 }
 
-Directory::Directory(const MyString& name, BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile>>& children, const Vector<MyString>& groups) :
+Directory::Directory(const MyString& name, BaseFile* parent, const Vector<Polymorphic_Ptr<BaseFile, fileFactory>>& children, const Vector<MyString>& groups) :
 	BaseFile(name, parent), children(children), groups(groups)
 {
 
@@ -44,13 +44,17 @@ BaseFile* Directory::getChildWithName(const MyString& str)
 	return nullptr;
 }
 
+void Directory::buildTree()
+{
+	buildTreeRecurse(*this);
+}
+
 void Directory::addFile(const User& user, BaseFile* file)
 {
 	if (isAuthenticated(user)) {
 		children.pushBack(file);
 		return;
 	}
-	// todo throw
 }
 
 void Directory::addGroup(const User& user, const MyString& groupName)
@@ -91,20 +95,48 @@ void Directory::removeFile(const User& user, BaseFile* file)
 	}
 }
 
+void Directory::buildTreeRecurse(Directory& dir)
+{
+	for (int i = 0; i < dir.children.getSize(); i++) {
+		dir.children[i]->parent = &dir;
+		if (Directory* current = dynamic_cast<Directory*>(dir. children[i].get())) {
+			buildTreeRecurse(*current);
+		}
+	}
+}
+
+void Directory::serialise(std::ostream& ofs) const
+{
+	if (parent) {
+		ofs << (int)getType() << '\n';
+	}
+	operator<<(ofs, static_cast<const BaseFile&>(*this));
+	ofs << children;
+	ofs << groups;
+}
+
+void Directory::deserialise(std::istream& ifs)
+{
+	operator>>(ifs, static_cast<BaseFile&>(*this));
+	ifs >> children;
+	ifs >> groups;
+}
+
+FileTypes Directory::getType() const
+{
+	return FileTypes::DirectoryType;
+}
+
 BaseFile* Directory::clone() const
 {
 	return new Directory(*this);
 }
 
-std::ostream& operator<<(std::ostream& ofs, const Directory& directory)
-{
-	operator<<(ofs, static_cast<const BaseFile&>(directory));
-	ofs << directory.children;
-	ofs << directory.groups;
-	return ofs;
-}
 
 std::istream& operator>>(std::istream& ifs, Directory& other)
 {
+	operator>>(ifs, static_cast<BaseFile&>(other));
+	ifs >> other.children;
+	ifs >> other.groups;
 	return ifs;
 }

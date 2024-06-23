@@ -46,3 +46,12 @@ std::ostream& operator<<(std::ostream& ofs, const BaseFile& file)
 	ofs << file.name << std::endl;
 	return ofs;
 }
+
+std::istream& operator>>(std::istream& ifs, BaseFile& file)
+{
+	file.creationDate.getline(ifs);
+	file.modificationDate.getline(ifs);
+	file.name.getline(ifs);
+	return ifs;
+}
+

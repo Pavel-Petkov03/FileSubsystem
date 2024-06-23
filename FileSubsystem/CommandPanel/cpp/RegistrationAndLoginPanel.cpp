@@ -21,6 +21,11 @@ LoginAndRegistrationPanel::LoginAndRegistrationPanel(BasePanel* prev, User* user
 
 }
 
+BasePanel* LoginAndRegistrationPanel::clone() const
+{
+	return new LoginAndRegistrationPanel(*this);
+}
+
 void LoginAndRegistrationPanel::printHeaderPanelMessage() const
 {
 	std::cout << "Welcome to registration page" << std::endl;

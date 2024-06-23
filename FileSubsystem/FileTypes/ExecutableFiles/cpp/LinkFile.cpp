@@ -9,6 +9,11 @@ ExecutableFile* LinkFile::clone() const
 	return new LinkFile(*this);
 }
 
+FileTypes LinkFile::getType() const
+{
+	return FileTypes::LinkType;
+}
+
 void LinkFile::execute(User* user)
 {
 	if (executed) {
@@ -22,7 +27,7 @@ void LinkFile::execute(User* user)
 			cd.runTaskOnLoggedFile((Directory*&)parent, user, currentStream, [](ExecutableFile*& otherFile, User* user, std::stringstream& context) {
 				otherFile->execute(user);
 				},
-				nullptr);
+			nullptr);
 		}
 		catch (CircularFileError& error) {
 			executed = false;
